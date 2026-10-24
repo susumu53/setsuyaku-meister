@@ -17,5 +17,6 @@
 | task-15 | Create complete publishing & operations launch guide | completed | note公開・運用完全マニュアル.md |
 | task-16 | Upgrade 4-lecture student handout & curriculum | completed | 家計防衛マスター講座_受講生配布用テキスト.md (ultra-actionable with 3-step actions, templates, and 3 worksheets) |
 | task-17 | Rebrand to 節約マイスター & integrate concrete actions | completed | Fully updated all 6 deliverables to '節約マイスター' with theory & concrete action frameworks |
+| task-18 | Build & deploy Setsuyaku Meister Master Web App | completed | Created all-in-one app (6 Calculators + 90-Day Planner + 30-Question Exam + A4 Certificate) and deployed to GitHub Pages |
 
 
