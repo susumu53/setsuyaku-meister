@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>節約マイスター 認定試験 ＆ 公式修了証書発行システム</title>
+  <meta name="description" content="物価高・金利上昇・エネルギー高騰を乗り切る「節約マイスター」の公式修了認定試験。全30問（80%以上合格）で即時公式修了証書をWeb/PDF発行。">
+  <meta property="og:title" content="節約マイスター 認定試験 ＆ 公式修了証書発行システム">
+  <meta property="og:description" content="物価高・金利上昇・制度改正を乗り切る家計防衛スキルを証明。全30問の試験に合格して、公式修了証書（PDF/印刷対応）を取得しよう！">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://susumu53.github.io/setsuyaku-meister/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="節約マイスター 認定試験 ＆ 公式修了証書発行システム">
+  <meta name="twitter:description" content="物価高・利上げ・補助金終了に対応する家計構造改革の理論と実践を証明する公式修了証書発行システム。">
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏅</text></svg>">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&family=Shippori+Mincho:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #0f172a;
+      --gold: #d97706;
+      --gold-light: #fef3c7;
+      --gold-dark: #b45309;
+      --success: #059669;
+      --danger: #dc2626;
+      --surface: #ffffff;
+      --background: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Outfit", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--background);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    
+    /* Modern Enhancements */
+    header {
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .btn {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .card {
+      transition: box-shadow 0.3s ease;
+    }
+
+    .option-item {
+      transition: all 0.2s ease;
+    }
+    .option-item:hover {
+      border-color: var(--primary-light);
+      background-color: #f8fafc;
+      transform: translateX(4px);
+    }
+    .option-item.selected {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .palette-btn {
+      transition: all 0.15s ease;
+    }
+    .palette-btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e293b);
+      color: white;
+      padding: 1.25rem 2rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge-year {
+      background: var(--gold);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* Container */
+    main {
+      flex: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.25rem;
+      border: 1px solid var(--border);
+    }
+
+    /* Welcome Screen */
+    .hero {
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .info-box {
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 1.2rem;
+      border-left: 4px solid var(--primary-light);
+    }
+
+    .info-box h4 {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .info-box p {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .input-group {
+      margin: 2rem 0;
+      text-align: left;
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px dashed #cbd5e1;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-size: 1.05rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary-light);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: white;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: #f1f5f9;
+    }
+
+    /* Exam Screen */
+    .exam-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-light), var(--gold));
+      width: 3.33%;
+      transition: width 0.3s ease;
+    }
+
+    .q-category {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+    }
+
+    .cat-knowledge { background: #e0f2fe; color: #0369a1; }
+    .cat-calc { background: #fef3c7; color: #b45309; }
+    .cat-case { background: #dcfce7; color: #15803d; }
+
+    .q-number {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .q-text {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: var(--primary-dark);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-item:hover {
+      border-color: #93c5fd;
+      background: #f8fafc;
+    }
+
+    .option-item.selected {
+      border-color: var(--primary-light);
+      background: #eff6ff;
+    }
+
+    .option-letter {
+      font-weight: 800;
+      color: var(--primary);
+      width: 24px;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      flex: 1;
+      font-size: 1.02rem;
+    }
+
+    .exam-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .question-palette {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 0.4rem;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+    }
+
+    .palette-btn {
+      width: 100%;
+      aspect-ratio: 1;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .palette-btn.active {
+      border-color: var(--primary);
+      background: #bfdbfe;
+      color: var(--primary);
+    }
+
+    .palette-btn.answered {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Result Screen */
+    .result-banner {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .result-pass {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px solid var(--success);
+      color: #065f46;
+    }
+
+    .result-fail {
+      background: linear-gradient(135deg, #fef2f2, #fee2e2);
+      border: 2px solid var(--danger);
+      color: #991b1b;
+    }
+
+    .score-large {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      margin: 0.75rem 0;
+    }
+
+    .score-breakdown {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .breakdown-item {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .breakdown-item h5 {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .breakdown-item span {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* Review Accordion */
+    .review-section {
+      margin-top: 2rem;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      background: white;
+    }
+
+    .review-header {
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .review-correct { border-left: 5px solid var(--success); }
+    .review-wrong { border-left: 5px solid var(--danger); }
+
+    .review-body {
+      padding: 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .review-explanation {
+      margin-top: 0.75rem;
+      padding: 0.85rem;
+      background: #f1f5f9;
+      border-radius: 6px;
+      color: #334155;
+    }
+
+    /* Certificate View */
+    .certificate-container {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .certificate-frame {
+      border: 8px double var(--gold);
+      padding: 2.5rem 2rem;
+      position: relative;
+      background: radial-gradient(circle at center, #ffffff 60%, #fffbf0 100%);
+      text-align: center;
+    }
+
+    .cert-seal {
+      position: absolute;
+      right: 2.5rem;
+      bottom: 2rem;
+      width: 100px;
+      height: 100px;
+      border: 3px solid #b91c1c;
+      border-radius: 50%;
+      color: #b91c1c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      transform: rotate(-10deg);
+      background: rgba(254, 242, 242, 0.6);
+      box-shadow: 0 0 10px rgba(185, 28, 28, 0.1);
+    }
+
+    .cert-heading {
+      font-size: 2.2rem;
+      letter-spacing: 0.3em;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      font-family: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+    }
+
+    .cert-name {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--text-main);
+      display: inline-block;
+      padding: 0 2rem 0.3rem;
+      margin-bottom: 1.75rem;
+      min-width: 280px;
+    }
+
+    .cert-text {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #334155;
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+
+    .cert-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 3rem;
+      padding: 0 2rem;
+      text-align: left;
+    }
+
+    .cert-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .cert-issuer {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: right;
+    }
+
+    /* Print Styles for Certificate */
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      header, footer, .no-print, .btn, .exam-nav, .hero-subtitle {
+        display: none !important;
+      }
+      main {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .card {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+      .certificate-container {
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .certificate-frame {
+        border: 8px double #b45309 !important;
+        page-break-inside: avoid;
+        height: 96vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 10mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="no-print">
+    <div class="brand">
+      <span class="brand-title">節約マイスター</span>
+      <span class="badge-year">2026年度版 公式試験</span>
+    </div>
+    <div style="font-size: 0.9rem; opacity: 0.9;">
+      完全無料 ｜ 即時合否判定 ＆ 修了証書発行
+    </div>
+  </header>
+
+  <main>
+    <!-- View 1: Welcome -->
+    <div id="view-welcome" class="card">
+      <div class="hero">
+        <span class="q-category cat-calc">公式オンライン認定試験</span>
+        <h1 class="hero-title">節約マイスター 修了認定試験</h1>
+        <p class="hero-subtitle">
+          6つの判断式と2026年度版家計防衛の理論・判断・実践力を測定する公式試験です。<br>
+          80%以上（24問以上）正解で、その場で公式修了証書（PDF保存・印刷可）を発行します。
+        </p>
+
+        <div class="info-grid">
+          <div class="info-box">
+            <h4>出題数</h4>
+            <p>全 30 問</p>
+          </div>
+          <div class="info-box">
+            <h4>合格基準</h4>
+            <p>80%（24問以上）</p>
+          </div>
+          <div class="info-box">
+            <h4>受験料・回数</h4>
+            <p>無料・何度でも可</p>
+          </div>
+          <div class="info-box">
+            <h4>教材の持ち込み</h4>
+            <p>自由（閲覧可）</p>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="examinee-name">修了証書に記載するお名前（氏名またはニックネーム）</label>
+          <input type="text" id="examinee-name" placeholder="例：山田 太郎 / @taro_money" required>
+          <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">
+            ※合格時に修了証書へ自動印字されます。後からの変更も可能です。
+          </small>
+        </div>
+
+        <button class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.15rem;" onclick="startExam()">
+          試験を開始する（全30問）
+        </button>
+      </div>
+    </div>
+
+    <!-- View 2: Exam -->
+    <div id="view-exam" class="card" style="display: none;">
+      <div class="exam-header">
+        <div>
+          <span id="q-category-badge" class="q-category cat-knowledge">知識問題</span>
+          <span id="q-counter" class="q-number" style="margin-left: 0.5rem;">問 1 / 30</span>
+        </div>
+        <div style="font-weight: 700; color: var(--primary);" id="progress-percent">
+          進捗: 3%
+        </div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <div id="q-text" class="q-text">問題文がここに表示されます</div>
+
+      <div id="options-container" class="options-list">
+        <!-- Options generated by JS -->
+      </div>
+
+      <div class="exam-nav">
+        <button class="btn btn-outline" id="btn-prev" onclick="navigateQuestion(-1)">← 前の設問</button>
+        <button class="btn btn-outline" onclick="togglePalette()">問題一覧</button>
+        <button class="btn btn-primary" id="btn-next" onclick="navigateQuestion(1)">次の設問 →</button>
+      </div>
+
+      <div id="palette-wrapper" style="display: none;">
+        <h4 style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted);">設問ナビゲーター（クリックで直接移動）</h4>
+        <div id="question-palette" class="question-palette">
+          <!-- Palette buttons generated by JS -->
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; text-align: center; border-top: 1px dashed var(--border); padding-top: 1.5rem;">
+        <button class="btn btn-gold" style="padding: 0.9rem 2.5rem;" onclick="submitExam()">
+          すべての回答を完了して採点する
+        </button>
+      </div>
+    </div>
+
+    <!-- View 3: Result & Certificate -->
+    <div id="view-result" class="card" style="display: none;">
+      <div id="result-banner" class="result-banner">
+        <h2 id="result-status-title" style="font-size: 1.75rem; margin-bottom: 0.5rem;">判定中...</h2>
+        <div class="score-large" id="result-score">0 / 30</div>
+        <p id="result-message" style="font-size: 1.05rem;">メッセージ</p>
+      </div>
+
+      <div class="score-breakdown">
+        <div class="breakdown-item">
+          <h5>知識問題（10問）</h5>
+          <span id="score-knowledge">0 / 10</span>
+        </div>
+        <div class="breakdown-item">
+          <h5>計算問題（10問）</h5>
+          <span id="score-calc">0 / 10</span>
+        </div>
+        <div class="breakdown-item">
+          <h5>事例問題（10問）</h5>
+          <span id="score-case">0 / 10</span>
+        </div>
+      </div>
+
+      <!-- Certificate Box (only shown if passed) -->
+      <div id="certificate-box" style="display: none;">
+        <div style="text-align: center; margin: 2rem 0 1rem;">
+          <h3 style="color: var(--gold-dark); font-size: 1.35rem;">🎉 公式修了証書が発行されました</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            下記の修了証書を画像またはPDFとして保存・印刷できます。
+          </p>
+        </div>
+
+        <div class="certificate-container" id="certificate-print-area">
+          <div class="certificate-frame">
+            <div class="cert-heading">修 了 証 書</div>
+            <div style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 0.5rem;">CERTIFICATE OF COMPLETION</div>
+            <div class="cert-name" id="cert-display-name">山田 太郎 殿</div>
+            
+            <div class="cert-text">
+              あなたは節約マイスター養成課程において、物価高・金利上昇・エネルギー環境の変容に対応する「6つの判断式」および家計構造改革の理論・判断・実践演習を修了し、所定の修了認定試験において優秀な成績を収められたことを証します。
+            </div>
+
+            <div style="font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 1.5rem;">
+              資格称号：節約マイスター（2026年度版）
+            </div>
+
+            <div class="cert-footer">
+              <div class="cert-meta">
+                <div>認定番号：<span id="cert-display-id">STM-2026-0001</span></div>
+                <div>認定日：<span id="cert-display-date">2026年10月24日</span></div>
+                <div>認定基準：修了試験 得点率 80%以上合格</div>
+              </div>
+              <div class="cert-issuer">
+                <div>節約マイスター認定事務局</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">主宰：@sukeroku</div>
+              </div>
+            </div>
+
+            <div class="cert-seal">
+              <span>節約</span>
+              <span style="font-size: 1.05rem;">マイスター</span>
+              <span>修了之証</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin: 1.5rem 0 2.5rem;" class="no-print">
+          <button class="btn btn-primary" onclick="window.print()">
+            🖨️ 修了証書をPDF保存 / 印刷する
+          </button>
+          <button class="btn btn-outline" style="margin-left: 0.5rem;" onclick="shareTwitter()">
+            📢 合格をSNS（X/Twitter）でシェア
+          </button>
+        </div>
+
+        <!-- Next Step: Practical Certification -->
+        <div style="background: #fdfbf7; border: 2px solid #fed7aa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;" class="no-print">
+          <h4 style="color: #9a3412; margin-bottom: 0.5rem; font-size: 1.1rem;">
+            🚀 次のステップ：第2段階「初級 実践認定」を目指しましょう！
+          </h4>
+          <p style="font-size: 0.95rem; color: #7c2d12; line-height: 1.7;">
+            本試験の合格から<strong>90日以内</strong>に、講座で学んだ施策を<strong>3つ以上実行</strong>し、削減額シートで年間の削減額を確定させて実践報告フォームへ提出すると、上位資格である「<strong>節約マイスター 実践認定証（Accreditation）</strong>」が授与されます。
+          </p>
+        </div>
+      </div>
+
+      <!-- Review Section -->
+      <div class="review-section no-print">
+        <h3 style="font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">
+          📝 設問別の解答・解説レビュー
+        </h3>
+        <div id="review-list">
+          <!-- Reviews generated by JS -->
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;" class="no-print">
+        <button class="btn btn-outline" onclick="restartExam()">もう一度受験する</button>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border);" class="no-print">
+    節約マイスター 認定試験システム 2026年度版 ｜ 一般生活防衛教育プログラム
+  </footer>
+
+  <script>
+    const questions = [
+  {
+    "id": 1,
+    "category": "知識問題",
+    "question": "電気・ガス料金の政府の支援が終わったのは、何月の使用分か。",
+    "options": [
+      "2026年3月使用分",
+      "2026年8月使用分",
+      "2026年9月使用分",
+      "2026年10月使用分"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "支援は2026年9月使用分で終わり、10月使用分から補助なしで実勢価格に戻りました。（第3回）"
+  },
+  {
+    "id": 2,
+    "category": "知識問題",
+    "question": "2025年10月から全面的に禁止されたものはどれか。",
+    "options": [
+      "ふるさと納税の返礼品そのもの",
+      "仲介サイトとポイントサイトによるポイントの付与",
+      "クレジットカードでの寄付",
+      "住民税の特例控除"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "禁止されたのはサイトによるポイント付与です。決済サービスが通常の支払いに伴って出すポイント還元は対象外です。（第4回）"
+  },
+  {
+    "id": 3,
+    "category": "知識問題",
+    "question": "2026年8月から、70歳未満の一般所得層に新しくできた高額療養費の年間上限は約いくらか。",
+    "options": [
+      "約8万5,800円",
+      "約28万6,000円",
+      "約53万円",
+      "約88万円"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "8月〜翌年7月の1年間の自己負担の合計が約53万円に達すると、それ以降の窓口負担は不要（または申請で払い戻し）になります。（第2回）"
+  },
+  {
+    "id": 4,
+    "category": "知識問題",
+    "question": "今、ウエルシア薬局の毎月20日に1.5倍の価値で使えるポイントはどれか。",
+    "options": [
+      "Vポイント",
+      "WAON POINT",
+      "楽天ポイント",
+      "VポイントとWAON POINTの両方"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "Vポイントは2024年9月20日に対象外になりました。（第4回）"
+  },
+  {
+    "id": 5,
+    "category": "知識問題",
+    "question": "三井住友Oliveで、対象店の高い還元（＋7.5%）を受けられる支払い方法はどれか。",
+    "options": [
+      "カード本体のタッチ決済",
+      "iDでの支払い",
+      "クレジットモードでのスマホのタッチ決済",
+      "デビットモードでのスマホのタッチ決済"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "カード本体のタッチ・iD・差し込み・磁気は0.5%のまま。デビットモードでは合計1.5%に下がります。（第4回）"
+  },
+  {
+    "id": 6,
+    "category": "知識問題",
+    "question": "医療費控除で確定申告書を出したあと、セルフメディケーション税制のほうが有利だとわかった。どうなるか。",
+    "options": [
+      "修正申告で選び直せる",
+      "更正の請求で選び直せる",
+      "選び直すことはできない",
+      "翌年の申告でまとめて調整できる"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "修正申告や更正の請求で選び直すことは認められていません。出す前に両方を計算します。（第4回）"
+  },
+  {
+    "id": 7,
+    "category": "知識問題",
+    "question": "賃貸の火災保険で必要な3つの補償に含まれないものはどれか。",
+    "options": [
+      "家財補償",
+      "借家人賠償責任",
+      "個人賠償責任",
+      "類焼損害特約"
+    ],
+    "answer": 3,
+    "answerLetter": "D",
+    "explanation": "必要なのは家財補償・借家人賠償責任・個人賠償責任の3つ。類焼損害特約は外す候補です。（第2回）"
+  },
+  {
+    "id": 8,
+    "category": "知識問題",
+    "question": "下味冷凍した肉・魚の保存の目安はどれか。",
+    "options": [
+      "3日以内",
+      "1週間以内",
+      "2週間以内",
+      "1カ月以内"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "肉・魚は2週間以内、カット野菜は1カ月以内が目安です。（第5回）"
+  },
+  {
+    "id": 9,
+    "category": "知識問題",
+    "question": "価格追跡ツールKeepaのグラフに反映されないものはどれか。",
+    "options": [
+      "Amazon直販の価格",
+      "新品の価格の動き",
+      "商品ページの個別クーポン",
+      "タイムセールの価格"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "個別クーポン、ポイント還元率、他社の価格は反映されません。（第5回）"
+  },
+  {
+    "id": 10,
+    "category": "知識問題",
+    "question": "国の「みらいエコ住宅2026」をほかの補助事業と併用するとき、最低申請額はいくらに下がるか。",
+    "options": [
+      "1万円",
+      "2万円",
+      "5万円",
+      "10万円"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "併用すると、最低申請額が5万円から2万円に下がります。（第3回）"
+  },
+  {
+    "id": 11,
+    "category": "計算問題",
+    "question": "食費が8万円、消費支出の合計が25万円の世帯のエンゲル係数は何%か。",
+    "options": [
+      "25%",
+      "28.6%",
+      "30%",
+      "32%"
+    ],
+    "answer": 3,
+    "answerLetter": "D",
+    "explanation": "80,000 ÷ 250,000 × 100 ＝ 32%。警告ラインの30%を超えています。（判断式①）"
+  },
+  {
+    "id": 12,
+    "category": "計算問題",
+    "question": "食費9万円・消費支出30万円の世帯が、食費はそのままでほかの支出を削り、消費支出が27万円になった。エンゲル係数は約何%になるか。",
+    "options": [
+      "27.0%",
+      "30.0%",
+      "33.3%",
+      "36.0%"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "90,000 ÷ 270,000 × 100 ＝ 約33.3%。分母が減ると、食費が同じでも係数は上がります。（判断式①）"
+  },
+  {
+    "id": 13,
+    "category": "計算問題",
+    "question": "借り換えの諸費用が36万円、月々の返済が9,000円減る。損益分岐月数はいくつか。",
+    "options": [
+      "25カ月",
+      "36カ月",
+      "40カ月",
+      "45カ月"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "360,000 ÷ 9,000 ＝ 40カ月。これより長く住む予定なら借り換えに意味があります。（判断式②）"
+  },
+  {
+    "id": 14,
+    "category": "計算問題",
+    "question": "2026年8月以降、一般所得層（70歳未満）が総医療費60万円で30日入院した。自己負担の上限はいくらか。",
+    "options": [
+      "85,800円",
+      "88,940円",
+      "90,940円",
+      "92,940円"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "85,800 ＋（600,000 − 286,000）× 1% ＝ 85,800 ＋ 3,140 ＝ 88,940円。（第2回）"
+  },
+  {
+    "id": 15,
+    "category": "計算問題",
+    "question": "本体6,000円の節水シャワーヘッドで、月2,254円節約できる。回収期間は約何カ月か。",
+    "options": [
+      "約1.5カ月",
+      "約2.2カ月",
+      "約2.7カ月",
+      "約3.6カ月"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "6,000 ÷ 2,254 ＝ 約2.7カ月。（判断式④）"
+  },
+  {
+    "id": 16,
+    "category": "計算問題",
+    "question": "病院の自己負担が4万円、対象の市販薬が5万円（合計9万円）。有利な制度と控除額はどれか。",
+    "options": [
+      "医療費控除で0円",
+      "医療費控除で9万円",
+      "セルフメディケーション税制で38,000円",
+      "セルフメディケーション税制で50,000円"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "合計10万円未満なので医療費控除は0円。セルフメディケーションは 50,000 − 12,000 ＝ 38,000円。（判断式⑤）"
+  },
+  {
+    "id": 17,
+    "category": "計算問題",
+    "question": "病院の自己負担が12万円、対象の市販薬が2万円（合計14万円）。有利な制度と控除額はどれか。",
+    "options": [
+      "医療費控除で40,000円",
+      "医療費控除で140,000円",
+      "セルフメディケーション税制で8,000円",
+      "セルフメディケーション税制で20,000円"
+    ],
+    "answer": 0,
+    "answerLetter": "A",
+    "explanation": "医療費控除は 140,000 − 100,000 ＝ 40,000円、セルフメディケーションは 20,000 − 12,000 ＝ 8,000円。10万円以上〜18万8,000円以下なので、両方を計算して大きいほうを選びます。（判断式⑤）"
+  },
+  {
+    "id": 18,
+    "category": "計算問題",
+    "question": "商品Aは500gで298円、商品Bは1kgで548円。1gあたりの単価が安いのはどちらか。",
+    "options": [
+      "商品A（約0.60円/g）",
+      "商品B（約0.55円/g）",
+      "同じ",
+      "内容量が違うので比べられない"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "A：298 ÷ 500 ＝ 0.596円、B：548 ÷ 1,000 ＝ 0.548円。（判断式⑥）"
+  },
+  {
+    "id": 19,
+    "category": "計算問題",
+    "question": "夫婦2人とも月3GB以下の通信量で、2人ともahamo（2,970円）からLINEMOベストプラン（990円）に替えた。年間でいくら下がるか。",
+    "options": [
+      "23,760円",
+      "21,120円",
+      "47,520円",
+      "71,280円"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "（2,970 − 990）× 12 × 2回線 ＝ 47,520円。（第2回）"
+  },
+  {
+    "id": 20,
+    "category": "計算問題",
+    "question": "Oliveの対象店で月3万円使い、還元率10%を保てた。年間で何円相当のポイントになるか。",
+    "options": [
+      "3,000円相当",
+      "18,000円相当",
+      "36,000円相当",
+      "54,000円相当"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "30,000 × 10% ＝ 月3,000pt、× 12 ＝ 年36,000円相当。（第4回）"
+  },
+  {
+    "id": 21,
+    "category": "事例問題",
+    "question": "ケースA（単身・賃貸・ahamo契約で月2GB・不動産会社の火災保険・毎日シャワー）が、最初の2週間に行う組み合わせとして最も適切なのはどれか。",
+    "options": [
+      "住宅ローンの借り換え・ふるさと納税・エアコンの買い替え",
+      "通信プランの変更・火災保険の切り替え・シャワーヘッドの交換",
+      "医療保険の追加・新電力の解約・まとめ買いの中止",
+      "補助金の申請・内窓の工事・エコキュートの交換"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "優先度「最優先」の3つは、初期費用がほぼかからず効果がすぐ確定します。（第6回）"
+  },
+  {
+    "id": 22,
+    "category": "事例問題",
+    "question": "ケースAの賃貸契約書には「借家人賠償責任保険への加入」とだけ書かれていた。どう判断するか。",
+    "options": [
+      "不動産会社の指定保険を使い続けるしかない",
+      "ネット型の保険を自分で選べる。今の保険は解約して残りの期間分の払い戻しを受けられる",
+      "火災保険は不要なので解約する",
+      "更新の時期まで何もできない"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "特定の保険会社が絶対条件でなければ、借りる人が自分で選べます。（第2回）"
+  },
+  {
+    "id": 23,
+    "category": "事例問題",
+    "question": "ケースAの通信量は月2GB。判断フローで選ぶプランはどれか。",
+    "options": [
+      "LINEMO ベストプラン（990円）",
+      "LINEMO ベストプラン（2,090円）",
+      "LINEMO ベストプランV（2,970円）",
+      "ahamo 大盛り（4,950円）"
+    ],
+    "answer": 0,
+    "answerLetter": "A",
+    "explanation": "月3GB以下はLINEMO ベストプラン（990円）。年23,760円下がります。（第2回）"
+  },
+  {
+    "id": 24,
+    "category": "事例問題",
+    "question": "ケースB（変動金利の住宅ローンあり）が「金利が上がったので、すぐ全期間固定に借り換えたい」と言っている。講座の考え方に合う判断はどれか。",
+    "options": [
+      "すぐ固定に借り換える",
+      "慌てて固定にせず、諸費用を含めた総コストで損益分岐月数を計算して判断する",
+      "ローンを一括で返す",
+      "金利が下がるまで返済を止める"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "変動1.23%と固定3.46%の差は2.23%。逆転するには0.25%の利上げが9回以上続き、35年続く必要があります。（第2回）"
+  },
+  {
+    "id": 25,
+    "category": "事例問題",
+    "question": "ケースBの借り換えは、諸費用40万円・月8,000円減。あと3年で引っ越す予定になった。どう判断するか。",
+    "options": [
+      "損益分岐は50カ月で、住む期間（36カ月）より長いので借り換えない",
+      "損益分岐は50カ月で、住む期間より短いので借り換える",
+      "損益分岐は5カ月なので借り換える",
+      "引っ越しと関係なく必ず借り換える"
+    ],
+    "answer": 0,
+    "answerLetter": "A",
+    "explanation": "400,000 ÷ 8,000 ＝ 50カ月 ＞ 36カ月。元が取れる前に引っ越すことになります。（判断式②）"
+  },
+  {
+    "id": 26,
+    "category": "事例問題",
+    "question": "ケースBがふるさと納税をする。講座で「今、実質的に還元率が最も高い支払い方法」として紹介したのはどれか。",
+    "options": [
+      "ふるさと納税サイト独自のポイント",
+      "ふるなびマネー（クレジットカードからのチャージ）",
+      "現金での振り込み",
+      "ポイントサイトを経由した寄付"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "チャージで最大20%増量されるキャンペーンが使えます。サイト独自のポイントやポイントサイト経由は禁止されています。（第4回）"
+  },
+  {
+    "id": 27,
+    "category": "事例問題",
+    "question": "ケースBが補助金を使った内窓の工事を考えている。90日計画で、見積もりの依頼はいつ始めるのがよいか。",
+    "options": [
+      "第1〜2週より前に、すべての工事を終わらせる",
+      "第3〜6週に見積もりを依頼し、第7〜12週に申請と工事",
+      "90日計画が終わってから考える",
+      "予算がなくなってから申し込む"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "補助事業には予算の上限があるため、早めに見積もりを取って申請に備えます。（第6回）"
+  },
+  {
+    "id": 28,
+    "category": "事例問題",
+    "question": "ケースC（東京都・66歳）が★3.0以上のエアコンを買う。東京ゼロエミポイントの扱いはどれか。",
+    "options": [
+      "対象外",
+      "買い替えのときだけ、設置写真を出して最大70,000円引き",
+      "買い替え・新規を問わず、設置写真なしで一律80,000円引き",
+      "後日、商品券が郵送される"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "満65歳以上（または障がい者手帳を持つ人）の特例です。2027年3月31日まで。（第3回）"
+  },
+  {
+    "id": 29,
+    "category": "事例問題",
+    "question": "ケースCの昨年の医療費は、病院5万円・対象の市販薬3万円（合計8万円）。確定申告での判断はどれか。",
+    "options": [
+      "医療費控除で80,000円",
+      "医療費控除で0円なので、何もしない",
+      "セルフメディケーション税制で18,000円",
+      "セルフメディケーション税制で30,000円"
+    ],
+    "answer": 2,
+    "answerLetter": "C",
+    "explanation": "合計10万円未満なので医療費控除は0円。セルフメディケーションは 30,000 − 12,000 ＝ 18,000円。（判断式⑤）"
+  },
+  {
+    "id": 30,
+    "category": "事例問題",
+    "question": "ケースCが入院日額給付型の医療保険を解約・減額してよいかを判断する基準として、正しい組み合わせはどれか。",
+    "options": [
+      "保険会社の評判と保険料の安さ",
+      "対象外の費用と月またぎ入院の初期負担を現預金で払えるか／長く療養して収入が減っても生活を維持できるか",
+      "加入してからの年数と、解約返戻金の額",
+      "友人が入っているかどうか"
+    ],
+    "answer": 1,
+    "answerLetter": "B",
+    "explanation": "両方「はい」なら、解約・減額の候補になります。（判断式③）"
+  }
+];
+
+    let currentIndex = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+    let examineeName = "";
+
+    function startExam() {
+      const nameInput = document.getElementById("examinee-name").value.trim();
+      if (!nameInput) {
+        alert("修了証書に記載するお名前を入力してください。");
+        document.getElementById("examinee-name").focus();
+        return;
+      }
+      examineeName = nameInput;
+      document.getElementById("view-welcome").style.display = "none";
+      document.getElementById("view-exam").style.display = "block";
+      
+      renderPalette();
+      renderCurrentQuestion();
+    }
+
+    function renderCurrentQuestion() {
+      const q = questions[currentIndex];
+      
+      // Category & numbering
+      const catBadge = document.getElementById("q-category-badge");
+      catBadge.textContent = q.category;
+      catBadge.className = "q-category " + (
+        q.category === "知識問題" ? "cat-knowledge" : 
+        (q.category === "計算問題" ? "cat-calc" : "cat-case")
+      );
+
+      document.getElementById("q-counter").textContent = `問 ${q.id} / 30`;
+      document.getElementById("q-text").textContent = q.question;
+
+      // Progress bar
+      const pct = Math.round(((currentIndex + 1) / questions.length) * 100);
+      document.getElementById("progress-bar").style.width = pct + "%";
+      document.getElementById("progress-percent").textContent = `進捗: ${pct}%`;
+
+      // Options
+      const letters = ["A", "B", "C", "D"];
+      const container = document.getElementById("options-container");
+      container.innerHTML = "";
+
+      q.options.forEach((optText, idx) => {
+        const item = document.createElement("div");
+        item.className = "option-item" + (userAnswers[currentIndex] === idx ? " selected" : "");
+        item.onclick = () => selectOption(idx);
+
+        item.innerHTML = `
+          <div class="option-letter">${letters[idx]}.</div>
+          <div class="option-text">${optText}</div>
+        `;
+        container.appendChild(item);
+      });
+
+      // Navigation buttons
+      document.getElementById("btn-prev").disabled = (currentIndex === 0);
+      document.getElementById("btn-next").textContent = (currentIndex === questions.length - 1) ? "確認" : "次の設問 →";
+
+      updatePalette();
+    }
+
+    function selectOption(idx) {
+      userAnswers[currentIndex] = idx;
+      renderCurrentQuestion();
+    }
+
+    function navigateQuestion(offset) {
+      const newIndex = currentIndex + offset;
+      if (newIndex >= 0 && newIndex < questions.length) {
+        currentIndex = newIndex;
+        renderCurrentQuestion();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      currentIndex = idx;
+      renderCurrentQuestion();
+    }
+
+    function togglePalette() {
+      const wrapper = document.getElementById("palette-wrapper");
+      wrapper.style.display = wrapper.style.display === "none" ? "block" : "none";
+    }
+
+    function renderPalette() {
+      const palette = document.getElementById("question-palette");
+      palette.innerHTML = "";
+      for (let i = 0; i < questions.length; i++) {
+        const btn = document.createElement("button");
+        btn.className = "palette-btn";
+        btn.textContent = i + 1;
+        btn.onclick = () => jumpToQuestion(i);
+        palette.appendChild(btn);
+      }
+    }
+
+    function updatePalette() {
+      const btns = document.querySelectorAll(".palette-btn");
+      btns.forEach((btn, idx) => {
+        btn.className = "palette-btn";
+        if (userAnswers[idx] !== null) btn.classList.add("answered");
+        if (idx === currentIndex) btn.classList.add("active");
+      });
+    }
+
+    function submitExam() {
+      const unanswered = userAnswers.filter(a => a === null).length;
+      if (unanswered > 0) {
+        const confirmSubmit = confirm(`まだ未回答の設問が ${unanswered} 問あります。このまま採点しますか？`);
+        if (!confirmSubmit) return;
+      }
+
+      // Grade
+      let totalScore = 0;
+      let scoreK = 0, scoreCalc = 0, scoreCase = 0;
+
+      questions.forEach((q, idx) => {
+        const isCorrect = (userAnswers[idx] === q.answer);
+        if (isCorrect) {
+          totalScore++;
+          if (q.category === "知識問題") scoreK++;
+          else if (q.category === "計算問題") scoreCalc++;
+          else if (q.category === "事例問題") scoreCase++;
+        }
+      });
+
+      const passed = (totalScore >= 24);
+
+      // Display results
+      document.getElementById("view-exam").style.display = "none";
+      document.getElementById("view-result").style.display = "block";
+
+      const banner = document.getElementById("result-banner");
+      banner.className = "result-banner " + (passed ? "result-pass" : "result-fail");
+
+      document.getElementById("result-status-title").textContent = passed ? "🎉 合格おめでとうございます！" : "不合格（あと少しでした）";
+      document.getElementById("result-score").textContent = `${totalScore} / 30 点`;
+      document.getElementById("result-message").textContent = passed ? 
+        `合格基準（24点以上）を達成しました！節約マイスター（2026年度版）として認定されました。` : 
+        `合格ラインは24点（得点率80%）以上です。解説を確認し、何度でも再挑戦できます。`;
+
+      document.getElementById("score-knowledge").textContent = `${scoreK} / 10`;
+      document.getElementById("score-calc").textContent = `${scoreCalc} / 10`;
+      document.getElementById("score-case").textContent = `${scoreCase} / 10`;
+
+      // Certificate handling
+      const certBox = document.getElementById("certificate-box");
+      if (passed) {
+        certBox.style.display = "block";
+        document.getElementById("cert-display-name").textContent = examineeName + " 殿";
+        
+        const now = new Date();
+        const dateStr = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
+        document.getElementById("cert-display-date").textContent = dateStr;
+
+        // Generate unique certificate ID
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        document.getElementById("cert-display-id").textContent = `STM-2026-${randomNum}`;
+      } else {
+        certBox.style.display = "none";
+      }
+
+      // Render review list
+      renderReviewList();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderReviewList() {
+      const container = document.getElementById("review-list");
+      container.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+
+      questions.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        const isCorrect = (uAns === q.answer);
+
+        const card = document.createElement("div");
+        card.className = "review-item " + (isCorrect ? "review-correct" : "review-wrong");
+
+        const userAnsText = uAns !== null ? `${letters[uAns]}. ${q.options[uAns]}` : "未回答";
+        const correctAnsText = `${q.answerLetter}. ${q.options[q.answer]}`;
+
+        card.innerHTML = `
+          <div class="review-header">
+            <div>問 ${q.id} [${q.category}] ${isCorrect ? "✅ 正解" : "❌ 不正解"}</div>
+            <div style="font-size: 0.9rem; font-weight: normal; color: var(--text-muted);">
+              配点: 1点
+            </div>
+          </div>
+          <div class="review-body">
+            <div style="font-weight: 700; margin-bottom: 0.5rem;">${q.question}</div>
+            <div style="margin: 0.4rem 0;">あなたの回答: <strong>${userAnsText}</strong></div>
+            <div style="margin: 0.4rem 0; color: var(--success); font-weight: 700;">正解: ${correctAnsText}</div>
+            <div class="review-explanation">
+              <strong>【解説】</strong><br>
+              ${q.explanation}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function shareTwitter() {
+      const text = encodeURIComponent(`「節約マイスター（2026年度版）」の修了試験に合格しました！6つの判断式で固定費・光熱費・税制・食費を構造的に見直します。\n#節約マイスター #家計防衛 #我慢から構造へ`);
+      const url = `https://twitter.com/intent/tweet?text=${text}`;
+      window.open(url, "_blank");
+    }
+
+    function restartExam() {
+      userAnswers.fill(null);
+      currentIndex = 0;
+      document.getElementById("view-result").style.display = "none";
+      document.getElementById("view-welcome").style.display = "block";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

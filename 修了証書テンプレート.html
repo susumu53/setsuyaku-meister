@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>節約マイスター 公式証書テンプレート（印刷・PDF発行用）</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f1f5f9;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", "BIZ UDPMincho", serif;
+      color: #0f172a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .no-print-toolbar {
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    .btn {
+      background: #1e3a8a;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .btn-gold {
+      background: #d97706;
+    }
+
+    .cert-sheet {
+      width: 297mm;
+      height: 210mm;
+      background: white;
+      box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.2);
+      padding: 15mm;
+      position: relative;
+      margin-bottom: 2rem;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cert-inner {
+      border: 6px double #b45309;
+      height: 100%;
+      padding: 12mm 16mm;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      background: radial-gradient(circle at center, #ffffff 60%, #fffbf0 100%);
+    }
+
+    .cert-inner::before {
+      content: "";
+      position: absolute;
+      top: 3mm; left: 3mm; right: 3mm; bottom: 3mm;
+      border: 1px solid #d97706;
+      pointer-events: none;
+    }
+
+    .cert-header {
+      margin-top: 2mm;
+    }
+
+    .cert-title {
+      font-size: 38pt;
+      letter-spacing: 0.35em;
+      color: #1e3a8a;
+      font-weight: 900;
+      margin-bottom: 2mm;
+    }
+
+    .cert-sub {
+      font-size: 13pt;
+      letter-spacing: 0.15em;
+      color: #64748b;
+      font-family: sans-serif;
+      font-weight: 600;
+    }
+
+    .cert-recipient {
+      font-size: 26pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #334155;
+      display: inline-block;
+      padding: 0 25mm 2mm;
+      margin: 6mm auto 4mm;
+    }
+
+    .cert-body {
+      font-size: 13.5pt;
+      line-height: 2.1;
+      color: #334155;
+      max-width: 215mm;
+      margin: 0 auto;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+
+    .cert-qualification {
+      font-size: 17pt;
+      font-weight: 800;
+      color: #1e3a8a;
+      letter-spacing: 0.08em;
+      margin: 4mm 0;
+    }
+
+    .cert-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 10mm;
+      margin-bottom: 2mm;
+      text-align: left;
+    }
+
+    .cert-meta {
+      font-size: 11pt;
+      color: #64748b;
+      line-height: 1.8;
+      font-family: sans-serif;
+    }
+
+    .cert-issuer {
+      text-align: right;
+    }
+
+    .issuer-org {
+      font-size: 14pt;
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+
+    .issuer-rep {
+      font-size: 11.5pt;
+      color: #475569;
+      margin-top: 1mm;
+    }
+
+    .seal {
+      position: absolute;
+      right: 18mm;
+      bottom: 12mm;
+      width: 28mm;
+      height: 28mm;
+      border: 3px solid #b91c1c;
+      border-radius: 50%;
+      color: #b91c1c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 9pt;
+      line-height: 1.25;
+      transform: rotate(-8deg);
+      background: rgba(254, 242, 242, 0.4);
+      box-shadow: 0 0 4px rgba(185, 28, 28, 0.2);
+    }
+
+    .seal-text-lg {
+      font-size: 13pt;
+      letter-spacing: 0.05em;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .no-print-toolbar {
+        display: none !important;
+      }
+      .cert-sheet {
+        margin: 0;
+        box-shadow: none;
+        width: 100vw;
+        height: 100vh;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print-toolbar">
+    <span><strong>公式証書プレビュー</strong>（文字をクリックして直接お名前や日付を編集できます）</span>
+    <button class="btn" onclick="window.print()">🖨️ PDF保存・印刷する</button>
+  </div>
+
+  <!-- Certificate 1: Completion (理論修了証書) -->
+  <div class="cert-sheet">
+    <div class="cert-inner">
+      <div class="cert-header">
+        <div class="cert-title">修 了 証 書</div>
+        <div class="cert-sub">CERTIFICATE OF COMPLETION</div>
+      </div>
+
+      <div>
+        <div class="cert-recipient" contenteditable="true">山田 太郎 殿</div>
+      </div>
+
+      <div>
+        <div class="cert-body">
+          あなたは節約マイスター養成課程において、物価高・金利上昇・エネルギー環境の変容に対応する「6つの判断式」および家計構造改革の理論・判断・実践演習を修了し、所定の修了認定試験において優秀な成績を収められたことを証します。
+        </div>
+        <div class="cert-qualification" contenteditable="true">
+          資格称号：節約マイスター（2026年度版）
+        </div>
+      </div>
+
+      <div class="cert-bottom">
+        <div class="cert-meta">
+          <div>認定番号：<span contenteditable="true">STM-2026-0001</span></div>
+          <div>認定日：<span contenteditable="true">2026年10月24日</span></div>
+          <div>認定基準：修了認定試験 得点率 80%以上合格</div>
+        </div>
+        <div class="cert-issuer">
+          <div class="issuer-org">節約マイスター認定事務局</div>
+          <div class="issuer-rep">主宰：@sukeroku</div>
+        </div>
+      </div>
+
+      <div class="seal">
+        <span>節約</span>
+        <span class="seal-text-lg">マイスター</span>
+        <span>修了之証</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate 2: Practice Accreditation (第2段階 実践認定証書) -->
+  <div class="cert-sheet">
+    <div class="cert-inner" style="border-color: #059669; background: radial-gradient(circle at center, #ffffff 60%, #f0fdf4 100%);">
+      <div class="cert-header">
+        <div class="cert-title" style="color: #065f46;">実 践 認 定 証</div>
+        <div class="cert-sub">CERTIFICATE OF PRACTICE ACCREDITATION</div>
+      </div>
+
+      <div>
+        <div class="cert-recipient" contenteditable="true">山田 太郎 殿</div>
+      </div>
+
+      <div>
+        <div class="cert-body">
+          あなたは節約マイスター修了後、所定の90日実行計画に基づき、自らの家計において3項目以上の構造改革を完遂し、確実な年間削減成果を創出されたことを確認したため、ここに「実践認定マイスター」として認定します。
+        </div>
+        <div class="cert-qualification" style="color: #047857;" contenteditable="true">
+          資格称号：節約マイスター 実践認定（2026年度版）
+        </div>
+      </div>
+
+      <div class="cert-bottom">
+        <div class="cert-meta">
+          <div>実践認定番号：<span contenteditable="true">STM-PRAC-2026-0001</span></div>
+          <div>認定日：<span contenteditable="true">2026年10月24日</span></div>
+          <div>認定基準：90日以内 実践施策3項目以上完遂 ＆ 削減額確定報告</div>
+        </div>
+        <div class="cert-issuer">
+          <div class="issuer-org" style="color: #065f46;">節約マイスター認定事務局</div>
+          <div class="issuer-rep">主宰：@sukeroku</div>
+        </div>
+      </div>
+
+      <div class="seal" style="border-color: #047857; color: #047857; background: rgba(240, 253, 244, 0.4);">
+        <span>節約</span>
+        <span class="seal-text-lg">マイスター</span>
+        <span>実践之証</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
