@@ -3,39 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>節約マイスター 認定試験 ＆ 公式修了証書発行システム</title>
-  <meta name="description" content="物価高・金利上昇・エネルギー高騰を乗り切る「節約マイスター」の公式修了認定試験。全30問（80%以上合格）で即時公式修了証書をWeb/PDF発行。">
-  <meta property="og:title" content="節約マイスター 認定試験 ＆ 公式修了証書発行システム">
-  <meta property="og:description" content="物価高・金利上昇・制度改正を乗り切る家計防衛スキルを証明。全30問の試験に合格して、公式修了証書（PDF/印刷対応）を取得しよう！">
+  <title>節約マイスター 公式Webアプリケーション ｜ 6大判断式診断・90日実践計画・公式修了認定試験</title>
+  <meta name="description" content="物価高・金利上昇・エネルギー高騰を乗り切る「節約マイスター」の公式Webアプリ。6大判断式シミュレーター、90日実践計画、全30問の公式修了認定試験（PDF修了証書即時発行）を完全搭載。">
+  <meta property="og:title" content="節約マイスター 公式Webアプリケーション">
+  <meta property="og:description" content="我慢ではなく仕組みと構造で資産を守る。6大判断式診断ツール ＆ 全30問公式修了認定試験（PDF修了証書発行対応）">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://susumu53.github.io/setsuyaku-meister/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="節約マイスター 認定試験 ＆ 公式修了証書発行システム">
-  <meta name="twitter:description" content="物価高・利上げ・補助金終了に対応する家計構造改革の理論と実践を証明する公式修了証書発行システム。">
+  <meta name="twitter:title" content="節約マイスター 公式Webアプリケーション">
+  <meta name="twitter:description" content="物価高・金利上昇・エネルギー高騰を乗り切る「節約マイスター」の公式Webアプリ。">
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏅</text></svg>">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&family=Shippori+Mincho:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --primary: #1e3a8a;
-      --primary-light: #3b82f6;
-      --primary-dark: #0f172a;
+      --primary: #0f2b5c;
+      --primary-light: #2563eb;
+      --primary-dark: #07152e;
       --gold: #d97706;
       --gold-light: #fef3c7;
       --gold-dark: #b45309;
-      --success: #059669;
-      --danger: #dc2626;
+      --gold-glow: #f59e0b;
+      --accent: #10b981;
+      --accent-dark: #047857;
+      --danger: #ef4444;
       --surface: #ffffff;
       --background: #f8fafc;
+      --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
-      --radius: 12px;
-      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --border-focus: #3b82f6;
+      --radius: 14px;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.1), 0 4px 8px -2px rgb(0 0 0 / 0.06);
     }
 
     * {
@@ -54,236 +60,471 @@
       flex-direction: column;
     }
 
-    
-    /* Modern Enhancements */
+    /* Header & Navigation */
     header {
-      backdrop-filter: blur(8px);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1e293b 100%);
+      color: white;
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
     }
 
-    .btn {
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
-    }
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    .card {
-      transition: box-shadow 0.3s ease;
-    }
-
-    .option-item {
-      transition: all 0.2s ease;
-    }
-    .option-item:hover {
-      border-color: var(--primary-light);
-      background-color: #f8fafc;
-      transform: translateX(4px);
-    }
-    .option-item.selected {
-      border-color: var(--primary);
-      background-color: #eff6ff;
-      box-shadow: 0 0 0 1px var(--primary);
-    }
-
-    .palette-btn {
-      transition: all 0.15s ease;
-    }
-    .palette-btn:hover {
-      transform: scale(1.08);
-    }
-
-    /* Header */
-    header {
-      background: linear-gradient(135deg, var(--primary), #1e293b);
-      color: white;
-      padding: 1.25rem 2rem;
-      box-shadow: var(--shadow);
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
     }
 
-    .badge-year {
-      background: var(--gold);
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 9999px;
-      letter-spacing: 0.05em;
+    .brand-icon {
+      font-size: 1.85rem;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
     }
 
     .brand-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      background: linear-gradient(to right, #ffffff, #fef08a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    /* Container */
+    .brand-sub {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.35rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.3rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-tab {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      padding: 0.5rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-tab:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-tab.active {
+      background: var(--gold);
+      color: white;
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.4);
+    }
+
+    /* Main Container */
     main {
       flex: 1;
-      max-width: 900px;
+      max-width: 1100px;
       width: 100%;
-      margin: 2rem auto;
+      margin: 1.8rem auto 3rem;
       padding: 0 1.25rem;
     }
 
-    /* Cards */
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 2.25rem;
-      border: 1px solid var(--border);
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.35s ease;
     }
 
-    /* Welcome Screen */
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Common Card Styles */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.2rem;
+      border: 1px solid var(--border);
+      margin-bottom: 1.8rem;
+    }
+
+    .card-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 0.3rem;
+    }
+
+    /* Hero / Overview Tab */
     .hero {
       text-align: center;
-      padding: 1rem 0;
+      padding: 2.5rem 1.5rem 3rem;
+      background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold-light);
+      color: var(--gold-dark);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      margin-bottom: 1.2rem;
+      border: 1px solid #fde68a;
+      letter-spacing: 0.05em;
     }
 
     .hero-title {
-      font-size: 1.85rem;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-      font-weight: 800;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      color: var(--primary-light);
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero-subtitle {
+      font-size: 1.1rem;
       color: var(--text-muted);
-      font-size: 1.05rem;
-      margin-bottom: 2rem;
+      max-width: 720px;
+      margin: 0 auto 2.2rem;
     }
 
-    .info-grid {
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
       margin-bottom: 2rem;
-      text-align: left;
     }
 
-    .info-box {
-      background: #f1f5f9;
-      border-radius: 8px;
-      padding: 1.2rem;
-      border-left: 4px solid var(--primary-light);
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
     }
 
-    .info-box h4 {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.35rem;
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: #cbd5e1;
     }
 
-    .info-box p {
-      font-size: 1.25rem;
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-title {
+      font-size: 1.15rem;
       font-weight: 700;
-      color: var(--primary-dark);
-    }
-
-    .input-group {
-      margin: 2rem 0;
-      text-align: left;
-      background: #f8fafc;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border: 1px dashed #cbd5e1;
-    }
-
-    .input-group label {
-      display: block;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
       color: var(--primary);
+      margin-bottom: 0.5rem;
     }
 
-    .input-group input {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      font-size: 1.05rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      outline: none;
-      transition: border-color 0.2s;
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
     }
 
-    .input-group input:focus {
-      border-color: var(--primary-light);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-    }
-
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.85rem 2rem;
-      font-size: 1.05rem;
+      font-size: 0.98rem;
       font-weight: 700;
-      border-radius: 8px;
+      padding: 0.8rem 1.6rem;
+      border-radius: 10px;
       border: none;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px -2px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:active {
+      transform: translateY(0);
     }
 
     .btn-primary {
-      background: var(--primary-light);
+      background: var(--primary);
       color: white;
     }
-
     .btn-primary:hover {
-      background: var(--primary);
-      transform: translateY(-1px);
+      background: #1e3a8a;
     }
 
     .btn-gold {
-      background: var(--gold);
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       color: white;
+      box-shadow: 0 4px 10px rgba(217, 119, 6, 0.25);
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%);
     }
 
-    .btn-gold:hover {
-      background: var(--gold-dark);
-      transform: translateY(-1px);
+    .btn-success {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-success:hover {
+      background: var(--accent-dark);
     }
 
     .btn-outline {
       background: transparent;
+      border: 2px solid var(--border);
       color: var(--text-main);
-      border: 1px solid var(--border);
     }
-
     .btn-outline:hover {
-      background: #f1f5f9;
+      border-color: var(--primary-light);
+      color: var(--primary-light);
+      background: #f8fafc;
     }
 
-    /* Exam Screen */
-    .exam-header {
+    /* Calculator Styles */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: 1.8rem;
+    }
+
+    @media (max-width: 600px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-family: inherit;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      background: #ffffff;
+      color: var(--text-main);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .calc-result-box {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .calc-result-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+
+    .calc-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary);
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+    }
+
+    .calc-badge {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      margin-top: 0.5rem;
+    }
+
+    .badge-good {
+      background: #dcfce7;
+      color: #15803d;
+    }
+    .badge-warn {
+      background: #fef3c7;
+      color: #b45309;
+    }
+    .badge-alert {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .calc-advice {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: #475569;
+      line-height: 1.5;
+      padding-top: 0.75rem;
+      border-top: 1px dashed #cbd5e1;
+    }
+
+    /* 90-Day Planner & Cash Flow */
+    .cashflow-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, #1e3a8a 100%);
+      color: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      box-shadow: var(--shadow-lg);
     }
 
-    .progress-bar-container {
+    .cashflow-banner h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #93c5fd;
+      margin-bottom: 0.4rem;
+    }
+
+    .cashflow-total {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #fef08a;
+      letter-spacing: -0.02em;
+    }
+
+    .plan-table {
       width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .plan-table th {
+      background: #f1f5f9;
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .plan-table td {
+      padding: 0.95rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      vertical-align: middle;
+    }
+
+    .plan-input {
+      width: 110px;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-align: right;
+      font-family: inherit;
+      font-weight: 700;
+    }
+
+    /* Exam & Certificate */
+    .exam-progress-bar {
       height: 8px;
       background: #e2e8f0;
       border-radius: 9999px;
@@ -291,1191 +532,1280 @@
       margin-bottom: 1.5rem;
     }
 
-    .progress-bar {
+    .exam-progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--primary-light), var(--gold));
-      width: 3.33%;
+      width: 0%;
       transition: width 0.3s ease;
     }
 
-    .q-category {
-      display: inline-block;
-      font-size: 0.8rem;
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .question-badge {
+      background: #eff6ff;
+      color: var(--primary-light);
+      font-size: 0.82rem;
       font-weight: 700;
       padding: 0.25rem 0.75rem;
       border-radius: 9999px;
-      margin-bottom: 0.75rem;
+      border: 1px solid #bfdbfe;
     }
 
-    .cat-knowledge { background: #e0f2fe; color: #0369a1; }
-    .cat-calc { background: #fef3c7; color: #b45309; }
-    .cat-case { background: #dcfce7; color: #15803d; }
-
-    .q-number {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .q-text {
+    .question-text {
       font-size: 1.2rem;
       font-weight: 700;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
       color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
     }
 
     .options-list {
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.75rem;
       margin-bottom: 2rem;
     }
 
     .option-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
       padding: 1rem 1.25rem;
-      border: 2px solid var(--border);
-      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+      font-weight: 500;
     }
 
     .option-item:hover {
-      border-color: #93c5fd;
-      background: #f8fafc;
+      border-color: var(--primary-light);
+      background-color: #f8fafc;
+      transform: translateX(4px);
     }
 
     .option-item.selected {
-      border-color: var(--primary-light);
-      background: #eff6ff;
-    }
-
-    .option-letter {
-      font-weight: 800;
+      border-color: var(--primary);
+      background-color: #eff6ff;
+      box-shadow: 0 0 0 1px var(--primary);
+      font-weight: 700;
       color: var(--primary);
-      width: 24px;
-      flex-shrink: 0;
     }
 
-    .option-text {
-      flex: 1;
-      font-size: 1.02rem;
+    .option-indicator {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .option-item.selected .option-indicator {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
     }
 
     .exam-nav {
       display: flex;
       justify-content: space-between;
-      gap: 1rem;
+      align-items: center;
       margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
+      gap: 0.75rem;
     }
 
-    .question-palette {
+    .palette-grid {
       display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 0.4rem;
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background: #f8fafc;
-      border-radius: 8px;
+      grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border);
     }
 
     .palette-btn {
-      width: 100%;
-      aspect-ratio: 1;
+      height: 38px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: white;
       font-size: 0.85rem;
       font-weight: 700;
-      border: 1px solid #cbd5e1;
-      background: white;
-      border-radius: 4px;
       cursor: pointer;
+      transition: all 0.15s ease;
     }
 
-    .palette-btn.active {
-      border-color: var(--primary);
-      background: #bfdbfe;
-      color: var(--primary);
+    .palette-btn:hover {
+      transform: scale(1.08);
+      border-color: var(--primary-light);
     }
 
     .palette-btn.answered {
+      background: #eff6ff;
+      color: var(--primary);
+      border-color: var(--primary-light);
+    }
+
+    .palette-btn.current {
       background: var(--primary);
       color: white;
       border-color: var(--primary);
     }
 
-    /* Result Screen */
-    .result-banner {
-      text-align: center;
-      padding: 2.5rem 1rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-    }
-
-    .result-pass {
-      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-      border: 2px solid var(--success);
-      color: #065f46;
-    }
-
-    .result-fail {
-      background: linear-gradient(135deg, #fef2f2, #fee2e2);
-      border: 2px solid var(--danger);
-      color: #991b1b;
-    }
-
-    .score-large {
-      font-size: 3.5rem;
-      font-weight: 900;
-      line-height: 1;
-      margin: 0.75rem 0;
-    }
-
-    .score-breakdown {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin: 2rem 0;
-    }
-
-    .breakdown-item {
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .breakdown-item h5 {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .breakdown-item span {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    /* Review Accordion */
-    .review-section {
-      margin-top: 2rem;
-    }
-
-    .review-item {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      overflow: hidden;
-      background: white;
-    }
-
-    .review-header {
-      padding: 1rem 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #f8fafc;
-      font-weight: 700;
-    }
-
-    .review-correct { border-left: 5px solid var(--success); }
-    .review-wrong { border-left: 5px solid var(--danger); }
-
-    .review-body {
-      padding: 1.25rem;
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .review-explanation {
-      margin-top: 0.75rem;
-      padding: 0.85rem;
-      background: #f1f5f9;
-      border-radius: 6px;
-      color: #334155;
-    }
-
-    /* Certificate View */
+    /* Certificate Styles */
     .certificate-container {
+      margin: 2rem auto;
+      max-width: 820px;
       background: white;
-      padding: 2.5rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-lg);
-      margin: 2rem 0;
-      position: relative;
+      padding: 1.5rem;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     }
 
     .certificate-frame {
-      border: 8px double var(--gold);
-      padding: 2.5rem 2rem;
+      border: 6px double #b45309;
+      padding: 3rem 2.5rem;
       position: relative;
-      background: radial-gradient(circle at center, #ffffff 60%, #fffbf0 100%);
+      background: #fffdfa;
       text-align: center;
-    }
-
-    .cert-seal {
-      position: absolute;
-      right: 2.5rem;
-      bottom: 2rem;
-      width: 100px;
-      height: 100px;
-      border: 3px solid #b91c1c;
-      border-radius: 50%;
-      color: #b91c1c;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 0.85rem;
-      line-height: 1.2;
-      transform: rotate(-10deg);
-      background: rgba(254, 242, 242, 0.6);
-      box-shadow: 0 0 10px rgba(185, 28, 28, 0.1);
-    }
-
-    .cert-heading {
-      font-size: 2.2rem;
-      letter-spacing: 0.3em;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      font-weight: 900;
       font-family: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
     }
 
-    .cert-name {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      border-bottom: 2px solid var(--text-main);
-      display: inline-block;
-      padding: 0 2rem 0.3rem;
-      margin-bottom: 1.75rem;
-      min-width: 280px;
+    .cert-heading {
+      font-size: 2.3rem;
+      font-weight: 900;
+      letter-spacing: 0.4em;
+      color: #1e293b;
+      margin-bottom: 0.4rem;
     }
 
-    .cert-text {
+    .cert-sub {
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      color: #64748b;
+      margin-bottom: 2rem;
+      font-family: "Outfit", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .cert-name {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #b45309;
+      display: inline-block;
+      padding: 0 2rem 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .cert-body {
       font-size: 1.05rem;
-      line-height: 2;
+      line-height: 2.1;
       color: #334155;
       max-width: 650px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 2.5rem;
       text-align: justify;
-      text-justify: inter-ideograph;
+    }
+
+    .cert-title-badge {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 2.5rem;
     }
 
     .cert-footer {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-top: 3rem;
-      padding: 0 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #fed7aa;
       text-align: left;
     }
 
     .cert-meta {
       font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+      color: #64748b;
+      line-height: 1.7;
     }
 
     .cert-issuer {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--primary);
       text-align: right;
     }
 
-    /* Print Styles for Certificate */
+    .cert-seal {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 100px;
+      height: 100px;
+      border: 3.5px solid #dc2626;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #dc2626;
+      font-weight: 900;
+      font-size: 0.9rem;
+      line-height: 1.15;
+      background: rgba(254, 226, 226, 0.2);
+      transform: rotate(-4deg);
+      pointer-events: none;
+    }
+
+    /* Print Setup */
     @media print {
-      body {
-        background: white !important;
-        color: black !important;
+      body * {
+        visibility: hidden;
       }
-      header, footer, .no-print, .btn, .exam-nav, .hero-subtitle {
-        display: none !important;
+      #certificate-print-area, #certificate-print-area * {
+        visibility: visible;
       }
-      main {
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      .card {
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-      }
-      .certificate-container {
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
+      #certificate-print-area {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        background: white;
       }
       .certificate-frame {
-        border: 8px double #b45309 !important;
-        page-break-inside: avoid;
-        height: 96vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        border: 8px double #b45309;
+        height: 98vh;
+        box-sizing: border-box;
+      }
+      .no-print {
+        display: none !important;
       }
       @page {
         size: A4 landscape;
         margin: 10mm;
       }
     }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      margin-top: auto;
+      font-size: 0.88rem;
+    }
+
+    footer a {
+      color: #f59e0b;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header class="no-print">
-    <div class="brand">
-      <span class="brand-title">節約マイスター</span>
-      <span class="badge-year">2026年度版 公式試験</span>
-    </div>
-    <div style="font-size: 0.9rem; opacity: 0.9;">
-      完全無料 ｜ 即時合否判定 ＆ 修了証書発行
+    <div class="header-inner">
+      <div class="brand" onclick="switchTab('tab-home')">
+        <span class="brand-icon">🏅</span>
+        <div class="brand-info">
+          <div class="brand-title">節約マイスター</div>
+          <div class="brand-sub">SETSUYAKU MEISTER OFFICIAL WEB APP (2026 EDITION)</div>
+        </div>
+      </div>
+
+      <nav class="nav-tabs">
+        <button class="nav-tab active" id="btn-tab-home" onclick="switchTab('tab-home')">
+          <span>🏠</span> ホーム
+        </button>
+        <button class="nav-tab" id="btn-tab-calc" onclick="switchTab('tab-calc')">
+          <span>🧮</span> 6大判断式 診断
+        </button>
+        <button class="nav-tab" id="btn-tab-plan" onclick="switchTab('tab-plan')">
+          <span>📋</span> 90日実践計画
+        </button>
+        <button class="nav-tab" id="btn-tab-exam" onclick="switchTab('tab-exam')">
+          <span>🎓</span> 公式修了試験
+        </button>
+      </nav>
     </div>
   </header>
 
+  <!-- Main Content Area -->
   <main>
-    <!-- View 1: Welcome -->
-    <div id="view-welcome" class="card">
+    <!-- TAB 1: HOME & OVERVIEW -->
+    <section id="tab-home" class="tab-content active no-print">
       <div class="hero">
-        <span class="q-category cat-calc">公式オンライン認定試験</span>
-        <h1 class="hero-title">節約マイスター 修了認定試験</h1>
+        <div class="hero-badge">2026年最新制度改正・物価高・利上げ対応</div>
+        <h1 class="hero-title">我慢ではなく、<span>「仕組みと構造」</span>で資産を守る。</h1>
         <p class="hero-subtitle">
-          6つの判断式と2026年度版家計防衛の理論・判断・実践力を測定する公式試験です。<br>
-          80%以上（24問以上）正解で、その場で公式修了証書（PDF保存・印刷可）を発行します。
+          節約マイスターは、感覚や精神論の節約を脱し、「6つの判断式」と客観的な数字で家計の最適化を実行できる人材を証明する民間修了認定資格です。
         </p>
-
-        <div class="info-grid">
-          <div class="info-box">
-            <h4>出題数</h4>
-            <p>全 30 問</p>
-          </div>
-          <div class="info-box">
-            <h4>合格基準</h4>
-            <p>80%（24問以上）</p>
-          </div>
-          <div class="info-box">
-            <h4>受験料・回数</h4>
-            <p>無料・何度でも可</p>
-          </div>
-          <div class="info-box">
-            <h4>教材の持ち込み</h4>
-            <p>自由（閲覧可）</p>
-          </div>
+        <div class="hero-actions">
+          <button class="btn btn-gold" onclick="switchTab('tab-calc')">
+            🧮 6大判断式で家計を診断する
+          </button>
+          <button class="btn btn-primary" onclick="switchTab('tab-exam')">
+            🎓 公式修了試験を受験する（無料）
+          </button>
         </div>
-
-        <div class="input-group">
-          <label for="examinee-name">修了証書に記載するお名前（氏名またはニックネーム）</label>
-          <input type="text" id="examinee-name" placeholder="例：山田 太郎 / @taro_money" required>
-          <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">
-            ※合格時に修了証書へ自動印字されます。後からの変更も可能です。
-          </small>
-        </div>
-
-        <button class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.15rem;" onclick="startExam()">
-          試験を開始する（全30問）
-        </button>
       </div>
-    </div>
 
-    <!-- View 2: Exam -->
-    <div id="view-exam" class="card" style="display: none;">
-      <div class="exam-header">
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3 class="feature-title">理論の力（6つの判断式）</h3>
+          <p class="feature-desc">
+            エンゲル係数、損益分岐月数、高額療養費の上限など、制度が変わっても生涯使える不変のロジックを習得。
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚖️</div>
+          <h3 class="feature-title">判断の力（数字で即決）</h3>
+          <p class="feature-desc">
+            「住宅ローンの借り換え」「医療保険の要否」「PBと底値の見極め」など、自分の家計の数字を当てはめて即判定。
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-title">行動の力（年間削減を確定）</h3>
+          <p class="feature-desc">
+            Web操作、管理会社への連絡文面、下味冷凍プロトコルなど、迷わず90日計画を実行し創出キャッシュを確定。
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 5px solid var(--primary-light);">
+        <div class="card-title">📌 2026年後半、日本の家計に重なる「3大環境変化」</div>
+        <div style="margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+          <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+            <strong style="color: var(--primary);">① 金利上昇の現実化</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem;">
+              政策金利引き上げに伴い変動金利が1.1〜1.23%台へ。金利差と損益分岐月数の把握が不可欠。
+            </p>
+          </div>
+          <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+            <strong style="color: var(--primary);">② 光熱費補助の終了</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem;">
+              電気・ガス政府支援が9月使用分で終了。実勢価格に戻った冬の暖房・給湯対策が急務。
+            </p>
+          </div>
+          <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+            <strong style="color: var(--primary);">③ 制度・税制の激変</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem;">
+              高額療養費の新年間上限（53万）、ふるさと納税のポイント付与全面禁止など旧来の節約術が通用しない時代へ。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 6 FORMULA CALCULATORS -->
+    <section id="tab-calc" class="tab-content no-print">
+      <div class="card-header">
+        <h2 class="card-title">🧮 家計防衛「6大判断式」診断シミュレーター</h2>
+        <p class="card-desc">ご自身の家計の数字を入力するだけで、瞬時に客観的な判定と改善アドバイスを提示します。</p>
+      </div>
+
+      <div class="calc-grid">
+        <!-- 1. エンゲル係数 -->
+        <div class="card">
+          <h3 class="card-title" style="font-size: 1.15rem;">① エンゲル係数 判定機</h3>
+          <p class="card-desc">食費 ÷ 消費支出の合計 × 100</p>
+          
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label">先月の食費（円）</label>
+            <input type="number" id="calc-food" class="form-control" value="80000" oninput="runEngelCalc()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">先月の消費支出合計（円）※住居・光熱・通信・生活費の総支出</label>
+            <input type="number" id="calc-total" class="form-control" value="280000" oninput="runEngelCalc()">
+          </div>
+
+          <div class="calc-result-box">
+            <div class="calc-result-title">あなたのエンゲル係数</div>
+            <div class="calc-value"><span id="res-engel-val">28.6</span><span style="font-size: 1.1rem; color: var(--text-muted);">%</span></div>
+            <div id="res-engel-badge" class="calc-badge badge-warn">全国平均並み</div>
+            <div id="res-engel-advice" class="calc-advice">
+              分析：食費が全国平均（28.6%）前後です。他の固定費を見直すことで分母を拡大し、家計にゆとりを取り戻しましょう。
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 損益分岐月数 -->
+        <div class="card">
+          <h3 class="card-title" style="font-size: 1.15rem;">② 損益分岐月数 計算機</h3>
+          <p class="card-desc">初期費用の総額 ÷ 毎月の削減額</p>
+          
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label">乗り換え初期費用・手数料（円）</label>
+            <input type="number" id="calc-init-cost" class="form-control" value="400000" oninput="runBreakevenCalc()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">毎月浮く削減額（円/月）</label>
+            <input type="number" id="calc-monthly-save" class="form-control" value="8000" oninput="runBreakevenCalc()">
+          </div>
+
+          <div class="calc-result-box">
+            <div class="calc-result-title">回収までの損益分岐期間</div>
+            <div class="calc-value"><span id="res-breakeven-val">50.0</span><span style="font-size: 1.1rem; color: var(--text-muted);">カ月（約4.2年）</span></div>
+            <div id="res-breakeven-badge" class="calc-badge badge-good">乗り換え検討推奨</div>
+            <div id="res-breakeven-advice" class="calc-advice">
+              その住宅やサービスを50カ月以上利用し続けるなら、乗り換えた方が確実にお得になります。
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 自己負担上限と医療保険要否 -->
+        <div class="card">
+          <h3 class="card-title" style="font-size: 1.15rem;">③ 高額療養費・医療保険要否 診断</h3>
+          <p class="card-desc">手元現預金 ≧ 高額療養費年間上限（53万）＋ 対象外費用</p>
+          
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label">現在の生活防衛資金（手元現預金・円）</label>
+            <input type="number" id="calc-cash" class="form-control" value="2000000" oninput="runMedicalInsuranceCalc()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">世帯年収帯（70歳未満）</label>
+            <select id="calc-income-tier" class="form-control" onchange="runMedicalInsuranceCalc()">
+              <option value="530000" selected>一般所得層（年収 約370万〜770万円）- 年間上限 約53万円</option>
+              <option value="350000">低所得層（住民税非課税等）- 年間上限 約35万円</option>
+              <option value="800000">上位所得層（年収 約770万〜1,160万円）- 年間上限 約80万円</option>
+            </select>
+          </div>
+
+          <div class="calc-result-box">
+            <div class="calc-result-title">民間医療保険（入院日額給付）の要否判定</div>
+            <div class="calc-value"><span id="res-med-val" style="font-size: 1.5rem; color: var(--accent-dark);">解約・減額 候補</span></div>
+            <div id="res-med-badge" class="calc-badge badge-good">十分な手元資金あり</div>
+            <div id="res-med-advice" class="calc-advice">
+              手元資金（200万円）が高額療養費の年間上限（約53万円）と入院時の差額ベッド代想定を大きく上回っています。割高な入院日額保険を解約・減額することで月数千円〜1万円以上の固定費が浮きます。
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. 設備投資 回収期間 -->
+        <div class="card">
+          <h3 class="card-title" style="font-size: 1.15rem;">④ 省エネ設備 投資回収シミュレーター</h3>
+          <p class="card-desc">本体購入価格 ÷（年間の節約額 ÷ 12）</p>
+          
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label">導入設備の選択（または自由入力）</label>
+            <select id="calc-equip-preset" class="form-control" onchange="setEquipPreset()">
+              <option value="5000,27044">節水シャワーヘッド（本体5,000円 / 年間27,044円削減）</option>
+              <option value="5000,2300">サーキュレーター（本体5,000円 / 年間約2,300円削減）</option>
+              <option value="300000,50000">先進的窓リノベ 内窓（実質30万円 / 年間50,000円削減）</option>
+              <option value="custom">カスタム（自由に金額を入力）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">実質購入費用（円）※補助金控除後</label>
+            <input type="number" id="calc-equip-cost" class="form-control" value="5000" oninput="runEquipCalc()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">年間節約効果（円/年）</label>
+            <input type="number" id="calc-equip-annual" class="form-control" value="27044" oninput="runEquipCalc()">
+          </div>
+
+          <div class="calc-result-box">
+            <div class="calc-result-title">投資回収期間 ＆ 10年間純利益</div>
+            <div class="calc-value"><span id="res-equip-val">2.2</span><span style="font-size: 1.1rem; color: var(--text-muted);">カ月</span></div>
+            <div id="res-equip-profit" class="calc-badge badge-good">10年間の純利益：+265,440 円</div>
+            <div id="res-equip-advice" class="calc-advice">
+              回収期間が極めて短く、今すぐ導入すべき最優先の省エネ投資です。
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. 医療費控除 vs セルフメディ比較 -->
+        <div class="card">
+          <h3 class="card-title" style="font-size: 1.15rem;">⑤ 医療費控除 vs セルフメディ 比較判定</h3>
+          <p class="card-desc">（医療費窓口＋薬代 − 10万円）vs（対象OTC薬代 − 1.2万円）</p>
+          
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label">年間の病院・歯科等の窓口自己負担額（円）</label>
+            <input type="number" id="calc-med-hospital" class="form-control" value="60000" oninput="runTaxDeductCalc()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">対象OTC医薬品（識別マーク付市販薬）購入額（円）</label>
+            <input type="number" id="calc-med-otc" class="form-control" value="40000" oninput="runTaxDeductCalc()">
+          </div>
+
+          <div class="calc-result-box">
+            <div class="calc-result-title">どちらの確定申告制度を選ぶべきか</div>
+            <div class="calc-value"><span id="res-tax-winner" style="font-size: 1.5rem; color: var(--primary);">セルフメディ税制が有利</span></div>
+            <div id="res-tax-badge" class="calc-badge badge-good">控除額：28,000 円（医療費控除は 0 円）</div>
+            <div id="res-tax-advice" class="calc-advice">
+              合計10万円ですが、医療費控除は10万円足切りで0円となります。セルフメディケーション税制なら40,000 − 12,000 ＝ 28,000円の所得控除が確実に受けられます。
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. 1g/1mlあたり単価 底値比較 -->
+        <div class="card">
+          <h3 class="card-title" style="font-size: 1.15rem;">⑥ 1g/1mlあたり底値比較カリキュレーター</h3>
+          <p class="card-desc">商品価格 ÷ 内容量（gまたはml）</p>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+            <div style="background: #f8fafc; padding: 0.8rem; border-radius: 8px;">
+              <strong style="color: var(--primary); font-size: 0.9rem;">商品 A（例: PB通常品）</strong>
+              <div class="form-group" style="margin: 0.5rem 0;">
+                <label style="font-size: 0.8rem;">価格（円）</label>
+                <input type="number" id="calc-price-a" class="form-control" value="298" oninput="runUnitPriceCalc()">
+              </div>
+              <div class="form-group" style="margin: 0;">
+                <label style="font-size: 0.8rem;">容量（g / ml）</label>
+                <input type="number" id="calc-volume-a" class="form-control" value="400" oninput="runUnitPriceCalc()">
+              </div>
+            </div>
+            <div style="background: #f8fafc; padding: 0.8rem; border-radius: 8px;">
+              <strong style="color: var(--primary); font-size: 0.9rem;">商品 B（例: 大容量特売品）</strong>
+              <div class="form-group" style="margin: 0.5rem 0;">
+                <label style="font-size: 0.8rem;">価格（円）</label>
+                <input type="number" id="calc-price-b" class="form-control" value="750" oninput="runUnitPriceCalc()">
+              </div>
+              <div class="form-group" style="margin: 0;">
+                <label style="font-size: 0.8rem;">容量（g / ml）</label>
+                <input type="number" id="calc-volume-b" class="form-control" value="1000" oninput="runUnitPriceCalc()">
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-result-box">
+            <div class="calc-result-title">1gあたりの単価比較</div>
+            <div class="calc-value"><span id="res-unit-winner" style="font-size: 1.4rem;">商品Aの方が 0.7% 安い！</span></div>
+            <div id="res-unit-detail" class="calc-advice" style="border-top: none; padding-top: 0;">
+              商品A：0.745 円/g ｜ 商品B：0.750 円/g<br>
+              「大容量＝お得」という思い込みを排し、PBの通常サイズを選ぶのが正解です。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 90-DAY PRACTICE PLANNER -->
+    <section id="tab-plan" class="tab-content no-print">
+      <div class="cashflow-banner">
         <div>
-          <span id="q-category-badge" class="q-category cat-knowledge">知識問題</span>
-          <span id="q-counter" class="q-number" style="margin-left: 0.5rem;">問 1 / 30</span>
+          <h3>💰 あなたの年間創出キャッシュフロー（年間削減予定額）</h3>
+          <div class="cashflow-total"><span id="display-annual-total">0</span> 円 / 年</div>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-top: 0.4rem;">
+            下記の各項目の見直し額を入力すると、リアルタイムに集計されます。
+          </p>
         </div>
-        <div style="font-weight: 700; color: var(--primary);" id="progress-percent">
-          進捗: 3%
-        </div>
-      </div>
-
-      <div class="progress-bar-container">
-        <div id="progress-bar" class="progress-bar"></div>
-      </div>
-
-      <div id="q-text" class="q-text">問題文がここに表示されます</div>
-
-      <div id="options-container" class="options-list">
-        <!-- Options generated by JS -->
-      </div>
-
-      <div class="exam-nav">
-        <button class="btn btn-outline" id="btn-prev" onclick="navigateQuestion(-1)">← 前の設問</button>
-        <button class="btn btn-outline" onclick="togglePalette()">問題一覧</button>
-        <button class="btn btn-primary" id="btn-next" onclick="navigateQuestion(1)">次の設問 →</button>
-      </div>
-
-      <div id="palette-wrapper" style="display: none;">
-        <h4 style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted);">設問ナビゲーター（クリックで直接移動）</h4>
-        <div id="question-palette" class="question-palette">
-          <!-- Palette buttons generated by JS -->
+        <div>
+          <button class="btn btn-gold" onclick="savePlan()">💾 計画を保存する</button>
         </div>
       </div>
 
-      <div style="margin-top: 2rem; text-align: center; border-top: 1px dashed var(--border); padding-top: 1.5rem;">
-        <button class="btn btn-gold" style="padding: 0.9rem 2.5rem;" onclick="submitExam()">
-          すべての回答を完了して採点する
-        </button>
-      </div>
-    </div>
+      <div class="card">
+        <h3 class="card-title">📝 90日家計構造改革 削減額シミュレーター</h3>
+        <p class="card-desc">現状の支出と見直し後の支出を入力してください。自動的に年間削減額が算出されます。</p>
 
-    <!-- View 3: Result & Certificate -->
-    <div id="view-result" class="card" style="display: none;">
-      <div id="result-banner" class="result-banner">
-        <h2 id="result-status-title" style="font-size: 1.75rem; margin-bottom: 0.5rem;">判定中...</h2>
-        <div class="score-large" id="result-score">0 / 30</div>
-        <p id="result-message" style="font-size: 1.05rem;">メッセージ</p>
-      </div>
+        <div style="overflow-x: auto;">
+          <table class="plan-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">完了</th>
+                <th>項目・見直し施策</th>
+                <th>現状の月額</th>
+                <th>見直し後の月額</th>
+                <th>毎月の削減額</th>
+                <th>年間の創出額</th>
+              </tr>
+            </thead>
+            <tbody id="plan-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
 
-      <div class="score-breakdown">
-        <div class="breakdown-item">
-          <h5>知識問題（10問）</h5>
-          <span id="score-knowledge">0 / 10</span>
-        </div>
-        <div class="breakdown-item">
-          <h5>計算問題（10問）</h5>
-          <span id="score-calc">0 / 10</span>
-        </div>
-        <div class="breakdown-item">
-          <h5>事例問題（10問）</h5>
-          <span id="score-case">0 / 10</span>
+        <div style="margin-top: 2rem; background: #fdfbf7; border: 1.5px solid #fed7aa; border-radius: 10px; padding: 1.5rem;">
+          <h4 style="color: #9a3412; font-size: 1.1rem; margin-bottom: 0.5rem;">🎯 生まれた資金の使い道（再配分ゴール宣言）</h4>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+            支出を削るだけでは心は豊かになりません。浮いたお金を何に再配分するか宣言しましょう。
+          </p>
+          <input type="text" id="goal-input" class="form-control" placeholder="例：新NISAで月2万円の積立投資、年に1回の家族旅行、教育資金など" value="新NISAでの積立投資と家族旅行">
         </div>
       </div>
+    </section>
 
-      <!-- Certificate Box (only shown if passed) -->
-      <div id="certificate-box" style="display: none;">
-        <div style="text-align: center; margin: 2rem 0 1rem;">
-          <h3 style="color: var(--gold-dark); font-size: 1.35rem;">🎉 公式修了証書が発行されました</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem;">
-            下記の修了証書を画像またはPDFとして保存・印刷できます。
+    <!-- TAB 4: CERTIFICATION EXAM -->
+    <section id="tab-exam" class="tab-content">
+      <!-- Exam Screen 1: Welcome -->
+      <div id="view-exam-welcome" class="card no-print">
+        <div class="card-header" style="text-align: center;">
+          <div class="hero-badge" style="margin-bottom: 0.8rem;">公式修了認定試験</div>
+          <h2 style="font-size: 1.85rem; color: var(--primary); font-weight: 900;">節約マイスター 修了認定試験</h2>
+          <p class="card-desc" style="max-width: 650px; margin: 0.5rem auto 0;">
+            全30問の設問に解答し、80%（24問以上）の正解で合格。合格後、お名前と認定番号が入った公式修了証書（A4横印刷・PDF保存可）が即時発行されます。
           </p>
         </div>
 
-        <div class="certificate-container" id="certificate-print-area">
-          <div class="certificate-frame">
-            <div class="cert-heading">修 了 証 書</div>
-            <div style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 0.5rem;">CERTIFICATE OF COMPLETION</div>
-            <div class="cert-name" id="cert-display-name">山田 太郎 殿</div>
-            
-            <div class="cert-text">
-              あなたは節約マイスター養成課程において、物価高・金利上昇・エネルギー環境の変容に対応する「6つの判断式」および家計構造改革の理論・判断・実践演習を修了し、所定の修了認定試験において優秀な成績を収められたことを証します。
-            </div>
+        <div class="feature-grid" style="margin-bottom: 1.8rem;">
+          <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary-light);">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">出題数</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary-dark);">全 30 問（4択）</div>
+          </div>
+          <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--gold);">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">合格基準</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary-dark);">80%（24問以上）</div>
+          </div>
+          <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent);">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">受験料・再受験</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary-dark);">完全無料・何度でも可</div>
+          </div>
+        </div>
 
-            <div style="font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 1.5rem;">
-              資格称号：節約マイスター（2026年度版）
-            </div>
+        <div style="background: #f1f5f9; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+          <label class="form-label" style="font-size: 1rem;">修了証書に記載するお名前（氏名）を入力してください：</label>
+          <input type="text" id="examinee-name" class="form-control" placeholder="例：山田 太郎" style="font-size: 1.1rem; padding: 0.85rem 1rem;">
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.4rem;">
+            ※合格時に発行される公式修了証書にそのまま印字されます。
+          </p>
+        </div>
 
-            <div class="cert-footer">
-              <div class="cert-meta">
-                <div>認定番号：<span id="cert-display-id">STM-2026-0001</span></div>
-                <div>認定日：<span id="cert-display-date">2026年10月24日</span></div>
-                <div>認定基準：修了試験 得点率 80%以上合格</div>
+        <div style="text-align: center;">
+          <button class="btn btn-gold" style="padding: 1rem 3rem; font-size: 1.15rem;" onclick="startExam()">
+            試験を開始する ➔
+          </button>
+        </div>
+      </div>
+
+      <!-- Exam Screen 2: In-Progress Quiz -->
+      <div id="view-exam-quiz" class="card no-print" style="display: none;">
+        <div class="exam-progress-bar">
+          <div id="exam-progress-fill" class="exam-progress-fill"></div>
+        </div>
+
+        <div class="question-header">
+          <div class="question-badge" id="exam-q-category">知識問題</div>
+          <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);">
+            設問 <span id="exam-q-num" style="color: var(--primary); font-size: 1.2rem;">1</span> / 30
+          </div>
+        </div>
+
+        <div class="question-text" id="exam-q-text">
+          質問文がここに表示されます。
+        </div>
+
+        <div class="options-list" id="exam-options-container">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div class="exam-nav">
+          <button class="btn btn-outline" id="btn-prev-q" onclick="navQuestion(-1)">← 前の設問</button>
+          <button class="btn btn-outline" onclick="togglePalette()">設問一覧</button>
+          <button class="btn btn-primary" id="btn-next-q" onclick="navQuestion(1)">次の設問 →</button>
+        </div>
+
+        <div id="palette-wrapper" style="display: none;">
+          <div class="palette-grid" id="palette-grid">
+            <!-- Buttons rendered via JS -->
+          </div>
+        </div>
+
+        <div style="margin-top: 2.5rem; text-align: center; border-top: 1px dashed var(--border); padding-top: 1.5rem;">
+          <button class="btn btn-gold" style="padding: 0.9rem 2.5rem;" onclick="submitExam()">
+            すべての回答を完了して採点する
+          </button>
+        </div>
+      </div>
+
+      <!-- Exam Screen 3: Result & Certificate -->
+      <div id="view-exam-result" style="display: none;">
+        <div class="card no-print" style="text-align: center;">
+          <div id="result-status-badge" class="hero-badge" style="font-size: 1rem; padding: 0.5rem 1.25rem;">判定中</div>
+          <h2 id="result-status-title" style="font-size: 2rem; color: var(--primary); margin: 0.5rem 0 1rem; font-weight: 900;">-</h2>
+          
+          <div style="font-size: 3.5rem; font-weight: 900; color: var(--primary); margin-bottom: 0.5rem;">
+            <span id="result-score-val">0</span> <span style="font-size: 1.5rem; color: var(--text-muted);">/ 30 点</span>
+          </div>
+
+          <p id="result-message" style="font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">
+            メッセージ
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; max-width: 650px; margin: 0 auto 2rem;">
+            <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">知識問題（10問）</div>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);" id="score-cat-1">0 / 10</div>
+            </div>
+            <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">計算問題（10問）</div>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);" id="score-cat-2">0 / 10</div>
+            </div>
+            <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">事例問題（10問）</div>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);" id="score-cat-3">0 / 10</div>
+            </div>
+          </div>
+
+          <div id="result-actions-fail" style="display: none;">
+            <button class="btn btn-primary" onclick="restartExam()">もう一度受験する</button>
+          </div>
+        </div>
+
+        <!-- Certificate (Only visible if passed) -->
+        <div id="certificate-wrapper" style="display: none;">
+          <div class="no-print" style="text-align: center; margin: 2rem 0 1rem;">
+            <h3 style="color: var(--gold-dark); font-size: 1.4rem; font-weight: 800;">🎉 おめでとうございます！公式修了証書が発行されました</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              下の修了証書をワンクリックでPDF保存または印刷できます。
+            </p>
+            <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn btn-gold" onclick="window.print()">🖨️ 修了証書をPDF保存 / 印刷する</button>
+              <button class="btn btn-outline" onclick="shareX()">📢 合格をSNS（X/Twitter）でシェア</button>
+            </div>
+          </div>
+
+          <div class="certificate-container" id="certificate-print-area">
+            <div class="certificate-frame">
+              <div class="cert-heading">修 了 証 書</div>
+              <div class="cert-sub">Certificate of Completion</div>
+              
+              <div class="cert-name" id="cert-display-name">山田 太郎 殿</div>
+
+              <div class="cert-body">
+                貴殿は節約マイスター養成課程において、物価高・金利上昇・エネルギー環境の変容に対応する「6大判断式」および家計構造改革の理論・判断・実践演習を修了し、所定の修了認定試験において優秀な成績を収められたことを証します。
               </div>
-              <div class="cert-issuer">
-                <div>節約マイスター認定事務局</div>
-                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">主宰：@sukeroku</div>
-              </div>
-            </div>
 
-            <div class="cert-seal">
-              <span>節約</span>
-              <span style="font-size: 1.05rem;">マイスター</span>
-              <span>修了之証</span>
+              <div class="cert-title-badge">
+                資格称号：節約マイスター（2026年度版）
+              </div>
+
+              <div class="cert-footer">
+                <div class="cert-meta">
+                  <div>認定番号：<strong id="cert-display-id">STM-2026-0001</strong></div>
+                  <div>認定日：<span id="cert-display-date">2026年10月24日</span></div>
+                  <div>認定基準：修了試験 得点率 80%以上（合格）</div>
+                </div>
+                <div class="cert-issuer">
+                  <div style="font-weight: 800; font-size: 1.1rem; color: #1e293b;">節約マイスター認定事務局</div>
+                  <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.2rem;">主宰：@sukeroku</div>
+                </div>
+              </div>
+
+              <div class="cert-seal">
+                <span>節約</span>
+                <span style="font-size: 1.05rem;">マイスター</span>
+                <span>修了之証</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div style="text-align: center; margin: 1.5rem 0 2.5rem;" class="no-print">
-          <button class="btn btn-primary" onclick="window.print()">
-            🖨️ 修了証書をPDF保存 / 印刷する
-          </button>
-          <button class="btn btn-outline" style="margin-left: 0.5rem;" onclick="shareTwitter()">
-            📢 合格をSNS（X/Twitter）でシェア
-          </button>
-        </div>
-
-        <!-- Next Step: Practical Certification -->
-        <div style="background: #fdfbf7; border: 2px solid #fed7aa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;" class="no-print">
-          <h4 style="color: #9a3412; margin-bottom: 0.5rem; font-size: 1.1rem;">
-            🚀 次のステップ：第2段階「初級 実践認定」を目指しましょう！
-          </h4>
-          <p style="font-size: 0.95rem; color: #7c2d12; line-height: 1.7;">
-            本試験の合格から<strong>90日以内</strong>に、講座で学んだ施策を<strong>3つ以上実行</strong>し、削減額シートで年間の削減額を確定させて実践報告フォームへ提出すると、上位資格である「<strong>節約マイスター 実践認定証（Accreditation）</strong>」が授与されます。
-          </p>
+        <!-- Question Review Section -->
+        <div class="card no-print" style="margin-top: 2rem;">
+          <h3 class="card-title">📝 設問別の解答・解説レビュー</h3>
+          <div id="exam-review-container" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+            <!-- Rendered via JS -->
+          </div>
         </div>
       </div>
-
-      <!-- Review Section -->
-      <div class="review-section no-print">
-        <h3 style="font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">
-          📝 設問別の解答・解説レビュー
-        </h3>
-        <div id="review-list">
-          <!-- Reviews generated by JS -->
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 2rem;" class="no-print">
-        <button class="btn btn-outline" onclick="restartExam()">もう一度受験する</button>
-      </div>
-    </div>
+    </section>
   </main>
 
-  <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border);" class="no-print">
-    節約マイスター 認定試験システム 2026年度版 ｜ 一般生活防衛教育プログラム
+  <!-- Footer -->
+  <footer class="no-print">
+    <p>© 2026 節約マイスター認定事務局（Setsuyaku Meister）. All Rights Reserved.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b;">
+      本アプリは、2026年後半の家計防衛と構造的コスト最適化を支援する公式学習・認定ツールです。
+    </p>
   </footer>
 
+  <!-- Core JavaScript -->
   <script>
-    const questions = [
-  {
-    "id": 1,
-    "category": "知識問題",
-    "question": "電気・ガス料金の政府の支援が終わったのは、何月の使用分か。",
-    "options": [
-      "2026年3月使用分",
-      "2026年8月使用分",
-      "2026年9月使用分",
-      "2026年10月使用分"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "支援は2026年9月使用分で終わり、10月使用分から補助なしで実勢価格に戻りました。（第3回）"
-  },
-  {
-    "id": 2,
-    "category": "知識問題",
-    "question": "2025年10月から全面的に禁止されたものはどれか。",
-    "options": [
-      "ふるさと納税の返礼品そのもの",
-      "仲介サイトとポイントサイトによるポイントの付与",
-      "クレジットカードでの寄付",
-      "住民税の特例控除"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "禁止されたのはサイトによるポイント付与です。決済サービスが通常の支払いに伴って出すポイント還元は対象外です。（第4回）"
-  },
-  {
-    "id": 3,
-    "category": "知識問題",
-    "question": "2026年8月から、70歳未満の一般所得層に新しくできた高額療養費の年間上限は約いくらか。",
-    "options": [
-      "約8万5,800円",
-      "約28万6,000円",
-      "約53万円",
-      "約88万円"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "8月〜翌年7月の1年間の自己負担の合計が約53万円に達すると、それ以降の窓口負担は不要（または申請で払い戻し）になります。（第2回）"
-  },
-  {
-    "id": 4,
-    "category": "知識問題",
-    "question": "今、ウエルシア薬局の毎月20日に1.5倍の価値で使えるポイントはどれか。",
-    "options": [
-      "Vポイント",
-      "WAON POINT",
-      "楽天ポイント",
-      "VポイントとWAON POINTの両方"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "Vポイントは2024年9月20日に対象外になりました。（第4回）"
-  },
-  {
-    "id": 5,
-    "category": "知識問題",
-    "question": "三井住友Oliveで、対象店の高い還元（＋7.5%）を受けられる支払い方法はどれか。",
-    "options": [
-      "カード本体のタッチ決済",
-      "iDでの支払い",
-      "クレジットモードでのスマホのタッチ決済",
-      "デビットモードでのスマホのタッチ決済"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "カード本体のタッチ・iD・差し込み・磁気は0.5%のまま。デビットモードでは合計1.5%に下がります。（第4回）"
-  },
-  {
-    "id": 6,
-    "category": "知識問題",
-    "question": "医療費控除で確定申告書を出したあと、セルフメディケーション税制のほうが有利だとわかった。どうなるか。",
-    "options": [
-      "修正申告で選び直せる",
-      "更正の請求で選び直せる",
-      "選び直すことはできない",
-      "翌年の申告でまとめて調整できる"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "修正申告や更正の請求で選び直すことは認められていません。出す前に両方を計算します。（第4回）"
-  },
-  {
-    "id": 7,
-    "category": "知識問題",
-    "question": "賃貸の火災保険で必要な3つの補償に含まれないものはどれか。",
-    "options": [
-      "家財補償",
-      "借家人賠償責任",
-      "個人賠償責任",
-      "類焼損害特約"
-    ],
-    "answer": 3,
-    "answerLetter": "D",
-    "explanation": "必要なのは家財補償・借家人賠償責任・個人賠償責任の3つ。類焼損害特約は外す候補です。（第2回）"
-  },
-  {
-    "id": 8,
-    "category": "知識問題",
-    "question": "下味冷凍した肉・魚の保存の目安はどれか。",
-    "options": [
-      "3日以内",
-      "1週間以内",
-      "2週間以内",
-      "1カ月以内"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "肉・魚は2週間以内、カット野菜は1カ月以内が目安です。（第5回）"
-  },
-  {
-    "id": 9,
-    "category": "知識問題",
-    "question": "価格追跡ツールKeepaのグラフに反映されないものはどれか。",
-    "options": [
-      "Amazon直販の価格",
-      "新品の価格の動き",
-      "商品ページの個別クーポン",
-      "タイムセールの価格"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "個別クーポン、ポイント還元率、他社の価格は反映されません。（第5回）"
-  },
-  {
-    "id": 10,
-    "category": "知識問題",
-    "question": "国の「みらいエコ住宅2026」をほかの補助事業と併用するとき、最低申請額はいくらに下がるか。",
-    "options": [
-      "1万円",
-      "2万円",
-      "5万円",
-      "10万円"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "併用すると、最低申請額が5万円から2万円に下がります。（第3回）"
-  },
-  {
-    "id": 11,
-    "category": "計算問題",
-    "question": "食費が8万円、消費支出の合計が25万円の世帯のエンゲル係数は何%か。",
-    "options": [
-      "25%",
-      "28.6%",
-      "30%",
-      "32%"
-    ],
-    "answer": 3,
-    "answerLetter": "D",
-    "explanation": "80,000 ÷ 250,000 × 100 ＝ 32%。警告ラインの30%を超えています。（判断式①）"
-  },
-  {
-    "id": 12,
-    "category": "計算問題",
-    "question": "食費9万円・消費支出30万円の世帯が、食費はそのままでほかの支出を削り、消費支出が27万円になった。エンゲル係数は約何%になるか。",
-    "options": [
-      "27.0%",
-      "30.0%",
-      "33.3%",
-      "36.0%"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "90,000 ÷ 270,000 × 100 ＝ 約33.3%。分母が減ると、食費が同じでも係数は上がります。（判断式①）"
-  },
-  {
-    "id": 13,
-    "category": "計算問題",
-    "question": "借り換えの諸費用が36万円、月々の返済が9,000円減る。損益分岐月数はいくつか。",
-    "options": [
-      "25カ月",
-      "36カ月",
-      "40カ月",
-      "45カ月"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "360,000 ÷ 9,000 ＝ 40カ月。これより長く住む予定なら借り換えに意味があります。（判断式②）"
-  },
-  {
-    "id": 14,
-    "category": "計算問題",
-    "question": "2026年8月以降、一般所得層（70歳未満）が総医療費60万円で30日入院した。自己負担の上限はいくらか。",
-    "options": [
-      "85,800円",
-      "88,940円",
-      "90,940円",
-      "92,940円"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "85,800 ＋（600,000 − 286,000）× 1% ＝ 85,800 ＋ 3,140 ＝ 88,940円。（第2回）"
-  },
-  {
-    "id": 15,
-    "category": "計算問題",
-    "question": "本体6,000円の節水シャワーヘッドで、月2,254円節約できる。回収期間は約何カ月か。",
-    "options": [
-      "約1.5カ月",
-      "約2.2カ月",
-      "約2.7カ月",
-      "約3.6カ月"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "6,000 ÷ 2,254 ＝ 約2.7カ月。（判断式④）"
-  },
-  {
-    "id": 16,
-    "category": "計算問題",
-    "question": "病院の自己負担が4万円、対象の市販薬が5万円（合計9万円）。有利な制度と控除額はどれか。",
-    "options": [
-      "医療費控除で0円",
-      "医療費控除で9万円",
-      "セルフメディケーション税制で38,000円",
-      "セルフメディケーション税制で50,000円"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "合計10万円未満なので医療費控除は0円。セルフメディケーションは 50,000 − 12,000 ＝ 38,000円。（判断式⑤）"
-  },
-  {
-    "id": 17,
-    "category": "計算問題",
-    "question": "病院の自己負担が12万円、対象の市販薬が2万円（合計14万円）。有利な制度と控除額はどれか。",
-    "options": [
-      "医療費控除で40,000円",
-      "医療費控除で140,000円",
-      "セルフメディケーション税制で8,000円",
-      "セルフメディケーション税制で20,000円"
-    ],
-    "answer": 0,
-    "answerLetter": "A",
-    "explanation": "医療費控除は 140,000 − 100,000 ＝ 40,000円、セルフメディケーションは 20,000 − 12,000 ＝ 8,000円。10万円以上〜18万8,000円以下なので、両方を計算して大きいほうを選びます。（判断式⑤）"
-  },
-  {
-    "id": 18,
-    "category": "計算問題",
-    "question": "商品Aは500gで298円、商品Bは1kgで548円。1gあたりの単価が安いのはどちらか。",
-    "options": [
-      "商品A（約0.60円/g）",
-      "商品B（約0.55円/g）",
-      "同じ",
-      "内容量が違うので比べられない"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "A：298 ÷ 500 ＝ 0.596円、B：548 ÷ 1,000 ＝ 0.548円。（判断式⑥）"
-  },
-  {
-    "id": 19,
-    "category": "計算問題",
-    "question": "夫婦2人とも月3GB以下の通信量で、2人ともahamo（2,970円）からLINEMOベストプラン（990円）に替えた。年間でいくら下がるか。",
-    "options": [
-      "23,760円",
-      "21,120円",
-      "47,520円",
-      "71,280円"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "（2,970 − 990）× 12 × 2回線 ＝ 47,520円。（第2回）"
-  },
-  {
-    "id": 20,
-    "category": "計算問題",
-    "question": "Oliveの対象店で月3万円使い、還元率10%を保てた。年間で何円相当のポイントになるか。",
-    "options": [
-      "3,000円相当",
-      "18,000円相当",
-      "36,000円相当",
-      "54,000円相当"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "30,000 × 10% ＝ 月3,000pt、× 12 ＝ 年36,000円相当。（第4回）"
-  },
-  {
-    "id": 21,
-    "category": "事例問題",
-    "question": "ケースA（単身・賃貸・ahamo契約で月2GB・不動産会社の火災保険・毎日シャワー）が、最初の2週間に行う組み合わせとして最も適切なのはどれか。",
-    "options": [
-      "住宅ローンの借り換え・ふるさと納税・エアコンの買い替え",
-      "通信プランの変更・火災保険の切り替え・シャワーヘッドの交換",
-      "医療保険の追加・新電力の解約・まとめ買いの中止",
-      "補助金の申請・内窓の工事・エコキュートの交換"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "優先度「最優先」の3つは、初期費用がほぼかからず効果がすぐ確定します。（第6回）"
-  },
-  {
-    "id": 22,
-    "category": "事例問題",
-    "question": "ケースAの賃貸契約書には「借家人賠償責任保険への加入」とだけ書かれていた。どう判断するか。",
-    "options": [
-      "不動産会社の指定保険を使い続けるしかない",
-      "ネット型の保険を自分で選べる。今の保険は解約して残りの期間分の払い戻しを受けられる",
-      "火災保険は不要なので解約する",
-      "更新の時期まで何もできない"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "特定の保険会社が絶対条件でなければ、借りる人が自分で選べます。（第2回）"
-  },
-  {
-    "id": 23,
-    "category": "事例問題",
-    "question": "ケースAの通信量は月2GB。判断フローで選ぶプランはどれか。",
-    "options": [
-      "LINEMO ベストプラン（990円）",
-      "LINEMO ベストプラン（2,090円）",
-      "LINEMO ベストプランV（2,970円）",
-      "ahamo 大盛り（4,950円）"
-    ],
-    "answer": 0,
-    "answerLetter": "A",
-    "explanation": "月3GB以下はLINEMO ベストプラン（990円）。年23,760円下がります。（第2回）"
-  },
-  {
-    "id": 24,
-    "category": "事例問題",
-    "question": "ケースB（変動金利の住宅ローンあり）が「金利が上がったので、すぐ全期間固定に借り換えたい」と言っている。講座の考え方に合う判断はどれか。",
-    "options": [
-      "すぐ固定に借り換える",
-      "慌てて固定にせず、諸費用を含めた総コストで損益分岐月数を計算して判断する",
-      "ローンを一括で返す",
-      "金利が下がるまで返済を止める"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "変動1.23%と固定3.46%の差は2.23%。逆転するには0.25%の利上げが9回以上続き、35年続く必要があります。（第2回）"
-  },
-  {
-    "id": 25,
-    "category": "事例問題",
-    "question": "ケースBの借り換えは、諸費用40万円・月8,000円減。あと3年で引っ越す予定になった。どう判断するか。",
-    "options": [
-      "損益分岐は50カ月で、住む期間（36カ月）より長いので借り換えない",
-      "損益分岐は50カ月で、住む期間より短いので借り換える",
-      "損益分岐は5カ月なので借り換える",
-      "引っ越しと関係なく必ず借り換える"
-    ],
-    "answer": 0,
-    "answerLetter": "A",
-    "explanation": "400,000 ÷ 8,000 ＝ 50カ月 ＞ 36カ月。元が取れる前に引っ越すことになります。（判断式②）"
-  },
-  {
-    "id": 26,
-    "category": "事例問題",
-    "question": "ケースBがふるさと納税をする。講座で「今、実質的に還元率が最も高い支払い方法」として紹介したのはどれか。",
-    "options": [
-      "ふるさと納税サイト独自のポイント",
-      "ふるなびマネー（クレジットカードからのチャージ）",
-      "現金での振り込み",
-      "ポイントサイトを経由した寄付"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "チャージで最大20%増量されるキャンペーンが使えます。サイト独自のポイントやポイントサイト経由は禁止されています。（第4回）"
-  },
-  {
-    "id": 27,
-    "category": "事例問題",
-    "question": "ケースBが補助金を使った内窓の工事を考えている。90日計画で、見積もりの依頼はいつ始めるのがよいか。",
-    "options": [
-      "第1〜2週より前に、すべての工事を終わらせる",
-      "第3〜6週に見積もりを依頼し、第7〜12週に申請と工事",
-      "90日計画が終わってから考える",
-      "予算がなくなってから申し込む"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "補助事業には予算の上限があるため、早めに見積もりを取って申請に備えます。（第6回）"
-  },
-  {
-    "id": 28,
-    "category": "事例問題",
-    "question": "ケースC（東京都・66歳）が★3.0以上のエアコンを買う。東京ゼロエミポイントの扱いはどれか。",
-    "options": [
-      "対象外",
-      "買い替えのときだけ、設置写真を出して最大70,000円引き",
-      "買い替え・新規を問わず、設置写真なしで一律80,000円引き",
-      "後日、商品券が郵送される"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "満65歳以上（または障がい者手帳を持つ人）の特例です。2027年3月31日まで。（第3回）"
-  },
-  {
-    "id": 29,
-    "category": "事例問題",
-    "question": "ケースCの昨年の医療費は、病院5万円・対象の市販薬3万円（合計8万円）。確定申告での判断はどれか。",
-    "options": [
-      "医療費控除で80,000円",
-      "医療費控除で0円なので、何もしない",
-      "セルフメディケーション税制で18,000円",
-      "セルフメディケーション税制で30,000円"
-    ],
-    "answer": 2,
-    "answerLetter": "C",
-    "explanation": "合計10万円未満なので医療費控除は0円。セルフメディケーションは 30,000 − 12,000 ＝ 18,000円。（判断式⑤）"
-  },
-  {
-    "id": 30,
-    "category": "事例問題",
-    "question": "ケースCが入院日額給付型の医療保険を解約・減額してよいかを判断する基準として、正しい組み合わせはどれか。",
-    "options": [
-      "保険会社の評判と保険料の安さ",
-      "対象外の費用と月またぎ入院の初期負担を現預金で払えるか／長く療養して収入が減っても生活を維持できるか",
-      "加入してからの年数と、解約返戻金の額",
-      "友人が入っているかどうか"
-    ],
-    "answer": 1,
-    "answerLetter": "B",
-    "explanation": "両方「はい」なら、解約・減額の候補になります。（判断式③）"
-  }
-];
+    // 1. Data Store
+    const questions = [{"id": 1, "category": "知識問題", "question": "電気・ガス料金の政府の支援が終わったのは、何月の使用分か。", "options": ["2026年3月使用分", "2026年8月使用分", "2026年9月使用分", "2026年10月使用分"], "answer": 2, "answerLetter": "C", "explanation": "支援は2026年9月使用分で終わり、10月使用分から補助なしで実勢価格に戻りました。（第3回）"}, {"id": 2, "category": "知識問題", "question": "2025年10月から全面的に禁止されたものはどれか。", "options": ["ふるさと納税の返礼品そのもの", "仲介サイトとポイントサイトによるポイントの付与", "クレジットカードでの寄付", "住民税の特例控除"], "answer": 1, "answerLetter": "B", "explanation": "禁止されたのはサイトによるポイント付与です。決済サービスが通常の支払いに伴って出すポイント還元は対象外です。（第4回）"}, {"id": 3, "category": "知識問題", "question": "2026年8月から、70歳未満の一般所得層に新しくできた高額療養費の年間上限は約いくらか。", "options": ["約8万5,800円", "約28万6,000円", "約53万円", "約88万円"], "answer": 2, "answerLetter": "C", "explanation": "8月〜翌年7月の1年間の自己負担の合計が約53万円に達すると、それ以降の窓口負担は不要（または申請で払い戻し）になります。（第2回）"}, {"id": 4, "category": "知識問題", "question": "今、ウエルシア薬局の毎月20日に1.5倍の価値で使えるポイントはどれか。", "options": ["Vポイント", "WAON POINT", "楽天ポイント", "VポイントとWAON POINTの両方"], "answer": 1, "answerLetter": "B", "explanation": "Vポイントは2024年9月20日に対象外になりました。（第4回）"}, {"id": 5, "category": "知識問題", "question": "三井住友Oliveで、対象店の高い還元（＋7.5%）を受けられる支払い方法はどれか。", "options": ["カード本体のタッチ決済", "iDでの支払い", "クレジットモードでのスマホのタッチ決済", "デビットモードでのスマホのタッチ決済"], "answer": 2, "answerLetter": "C", "explanation": "カード本体のタッチ・iD・差し込み・磁気は0.5%のまま。デビットモードでは合計1.5%に下がります。（第4回）"}, {"id": 6, "category": "知識問題", "question": "医療費控除で確定申告書を出したあと、セルフメディケーション税制のほうが有利だとわかった。どうなるか。", "options": ["修正申告で選び直せる", "更正の請求で選び直せる", "選び直すことはできない", "翌年の申告でまとめて調整できる"], "answer": 2, "answerLetter": "C", "explanation": "修正申告や更正の請求で選び直すことは認められていません。出す前に両方を計算します。（第4回）"}, {"id": 7, "category": "知識問題", "question": "賃貸の火災保険で必要な3つの補償に含まれないものはどれか。", "options": ["家財補償", "借家人賠償責任", "個人賠償責任", "類焼損害特約"], "answer": 3, "answerLetter": "D", "explanation": "必要なのは家財補償・借家人賠償責任・個人賠償責任の3つ。類焼損害特約は外す候補です。（第2回）"}, {"id": 8, "category": "知識問題", "question": "下味冷凍した肉・魚の保存の目安はどれか。", "options": ["3日以内", "1週間以内", "2週間以内", "1カ月以内"], "answer": 2, "answerLetter": "C", "explanation": "肉・魚は2週間以内、カット野菜は1カ月以内が目安です。（第5回）"}, {"id": 9, "category": "知識問題", "question": "価格追跡ツールKeepaのグラフに反映されないものはどれか。", "options": ["Amazon直販の価格", "新品の価格の動き", "商品ページの個別クーポン", "タイムセールの価格"], "answer": 2, "answerLetter": "C", "explanation": "個別クーポン、ポイント還元率、他社の価格は反映されません。（第5回）"}, {"id": 10, "category": "知識問題", "question": "国の「みらいエコ住宅2026」をほかの補助事業と併用するとき、最低申請額はいくらに下がるか。", "options": ["1万円", "2万円", "5万円", "10万円"], "answer": 1, "answerLetter": "B", "explanation": "併用すると、最低申請額が5万円から2万円に下がります。（第3回）"}, {"id": 11, "category": "計算問題", "question": "食費が8万円、消費支出の合計が25万円の世帯のエンゲル係数は何%か。", "options": ["25%", "28.6%", "30%", "32%"], "answer": 3, "answerLetter": "D", "explanation": "80,000 ÷ 250,000 × 100 ＝ 32%。警告ラインの30%を超えています。（判断式①）"}, {"id": 12, "category": "計算問題", "question": "食費9万円・消費支出30万円の世帯が、食費はそのままでほかの支出を削り、消費支出が27万円になった。エンゲル係数は約何%になるか。", "options": ["27.0%", "30.0%", "33.3%", "36.0%"], "answer": 2, "answerLetter": "C", "explanation": "90,000 ÷ 270,000 × 100 ＝ 約33.3%。分母が減ると、食費が同じでも係数は上がります。（判断式①）"}, {"id": 13, "category": "計算問題", "question": "借り換えの諸費用が36万円、月々の返済が9,000円減る。損益分岐月数はいくつか。", "options": ["25カ月", "36カ月", "40カ月", "45カ月"], "answer": 2, "answerLetter": "C", "explanation": "360,000 ÷ 9,000 ＝ 40カ月。これより長く住む予定なら借り換えに意味があります。（判断式②）"}, {"id": 14, "category": "計算問題", "question": "2026年8月以降、一般所得層（70歳未満）が総医療費60万円で30日入院した。自己負担の上限はいくらか。", "options": ["85,800円", "88,940円", "90,940円", "92,940円"], "answer": 1, "answerLetter": "B", "explanation": "85,800 ＋（600,000 − 286,000）× 1% ＝ 85,800 ＋ 3,140 ＝ 88,940円。（第2回）"}, {"id": 15, "category": "計算問題", "question": "本体6,000円の節水シャワーヘッドで、月2,254円節約できる。回収期間は約何カ月か。", "options": ["約1.5カ月", "約2.2カ月", "約2.7カ月", "約3.6カ月"], "answer": 2, "answerLetter": "C", "explanation": "6,000 ÷ 2,254 ＝ 約2.7カ月。（判断式④）"}, {"id": 16, "category": "計算問題", "question": "病院の自己負担が4万円、対象の市販薬が5万円（合計9万円）。有利な制度と控除額はどれか。", "options": ["医療費控除で0円", "医療費控除で9万円", "セルフメディケーション税制で38,000円", "セルフメディケーション税制で50,000円"], "answer": 2, "answerLetter": "C", "explanation": "合計10万円未満なので医療費控除は0円。セルフメディケーションは 50,000 − 12,000 ＝ 38,000円。（判断式⑤）"}, {"id": 17, "category": "計算問題", "question": "病院の自己負担が12万円、対象の市販薬が2万円（合計14万円）。有利な制度と控除額はどれか。", "options": ["医療費控除で40,000円", "医療費控除で140,000円", "セルフメディケーション税制で8,000円", "セルフメディケーション税制で20,000円"], "answer": 0, "answerLetter": "A", "explanation": "医療費控除は 140,000 − 100,000 ＝ 40,000円、セルフメディケーションは 20,000 − 12,000 ＝ 8,000円。10万円以上〜18万8,000円以下なので、両方を計算して大きいほうを選びます。（判断式⑤）"}, {"id": 18, "category": "計算問題", "question": "商品Aは500gで298円、商品Bは1kgで548円。1gあたりの単価が安いのはどちらか。", "options": ["商品A（約0.60円/g）", "商品B（約0.55円/g）", "同じ", "内容量が違うので比べられない"], "answer": 1, "answerLetter": "B", "explanation": "A：298 ÷ 500 ＝ 0.596円、B：548 ÷ 1,000 ＝ 0.548円。（判断式⑥）"}, {"id": 19, "category": "計算問題", "question": "夫婦2人とも月3GB以下の通信量で、2人ともahamo（2,970円）からLINEMOベストプラン（990円）に替えた。年間でいくら下がるか。", "options": ["23,760円", "21,120円", "47,520円", "71,280円"], "answer": 2, "answerLetter": "C", "explanation": "（2,970 − 990）× 12 × 2回線 ＝ 47,520円。（第2回）"}, {"id": 20, "category": "計算問題", "question": "Oliveの対象店で月3万円使い、還元率10%を保てた。年間で何円相当のポイントになるか。", "options": ["3,000円相当", "18,000円相当", "36,000円相当", "54,000円相当"], "answer": 2, "answerLetter": "C", "explanation": "30,000 × 10% ＝ 月3,000pt、× 12 ＝ 年36,000円相当。（第4回）"}, {"id": 21, "category": "事例問題", "question": "ケースA（単身・賃貸・ahamo契約で月2GB・不動産会社の火災保険・毎日シャワー）が、最初の2週間に行う組み合わせとして最も適切なのはどれか。", "options": ["住宅ローンの借り換え・ふるさと納税・エアコンの買い替え", "通信プランの変更・火災保険の切り替え・シャワーヘッドの交換", "医療保険の追加・新電力の解約・まとめ買いの中止", "補助金の申請・内窓の工事・エコキュートの交換"], "answer": 1, "answerLetter": "B", "explanation": "優先度「最優先」の3つは、初期費用がほぼかからず効果がすぐ確定します。（第6回）"}, {"id": 22, "category": "事例問題", "question": "ケースAの賃貸契約書には「借家人賠償責任保険への加入」とだけ書かれていた。どう判断するか。", "options": ["不動産会社の指定保険を使い続けるしかない", "ネット型の保険を自分で選べる。今の保険は解約して残りの期間分の払い戻しを受けられる", "火災保険は不要なので解約する", "更新の時期まで何もできない"], "answer": 1, "answerLetter": "B", "explanation": "特定の保険会社が絶対条件でなければ、借りる人が自分で選べます。（第2回）"}, {"id": 23, "category": "事例問題", "question": "ケースAの通信量は月2GB。判断フローで選ぶプランはどれか。", "options": ["LINEMO ベストプラン（990円）", "LINEMO ベストプラン（2,090円）", "LINEMO ベストプランV（2,970円）", "ahamo 大盛り（4,950円）"], "answer": 0, "answerLetter": "A", "explanation": "月3GB以下はLINEMO ベストプラン（990円）。年23,760円下がります。（第2回）"}, {"id": 24, "category": "事例問題", "question": "ケースB（変動金利の住宅ローンあり）が「金利が上がったので、すぐ全期間固定に借り換えたい」と言っている。講座の考え方に合う判断はどれか。", "options": ["すぐ固定に借り換える", "慌てて固定にせず、諸費用を含めた総コストで損益分岐月数を計算して判断する", "ローンを一括で返す", "金利が下がるまで返済を止める"], "answer": 1, "answerLetter": "B", "explanation": "変動1.23%と固定3.46%の差は2.23%。逆転するには0.25%の利上げが9回以上続き、35年続く必要があります。（第2回）"}, {"id": 25, "category": "事例問題", "question": "ケースBの借り換えは、諸費用40万円・月8,000円減。あと3年で引っ越す予定になった。どう判断するか。", "options": ["損益分岐は50カ月で、住む期間（36カ月）より長いので借り換えない", "損益分岐は50カ月で、住む期間より短いので借り換える", "損益分岐は5カ月なので借り換える", "引っ越しと関係なく必ず借り換える"], "answer": 0, "answerLetter": "A", "explanation": "400,000 ÷ 8,000 ＝ 50カ月 ＞ 36カ月。元が取れる前に引っ越すことになります。（判断式②）"}, {"id": 26, "category": "事例問題", "question": "ケースBがふるさと納税をする。講座で「今、実質的に還元率が最も高い支払い方法」として紹介したのはどれか。", "options": ["ふるさと納税サイト独自のポイント", "ふるなびマネー（クレジットカードからのチャージ）", "現金での振り込み", "ポイントサイトを経由した寄付"], "answer": 1, "answerLetter": "B", "explanation": "チャージで最大20%増量されるキャンペーンが使えます。サイト独自のポイントやポイントサイト経由は禁止されています。（第4回）"}, {"id": 27, "category": "事例問題", "question": "ケースBが補助金を使った内窓の工事を考えている。90日計画で、見積もりの依頼はいつ始めるのがよいか。", "options": ["第1〜2週より前に、すべての工事を終わらせる", "第3〜6週に見積もりを依頼し、第7〜12週に申請と工事", "90日計画が終わってから考える", "予算がなくなってから申し込む"], "answer": 1, "answerLetter": "B", "explanation": "補助事業には予算の上限があるため、早めに見積もりを取って申請に備えます。（第6回）"}, {"id": 28, "category": "事例問題", "question": "ケースC（東京都・66歳）が★3.0以上のエアコンを買う。東京ゼロエミポイントの扱いはどれか。", "options": ["対象外", "買い替えのときだけ、設置写真を出して最大70,000円引き", "買い替え・新規を問わず、設置写真なしで一律80,000円引き", "後日、商品券が郵送される"], "answer": 2, "answerLetter": "C", "explanation": "満65歳以上（または障がい者手帳を持つ人）の特例です。2027年3月31日まで。（第3回）"}, {"id": 29, "category": "事例問題", "question": "ケースCの昨年の医療費は、病院5万円・対象の市販薬3万円（合計8万円）。確定申告での判断はどれか。", "options": ["医療費控除で80,000円", "医療費控除で0円なので、何もしない", "セルフメディケーション税制で18,000円", "セルフメディケーション税制で30,000円"], "answer": 2, "answerLetter": "C", "explanation": "合計10万円未満なので医療費控除は0円。セルフメディケーションは 30,000 − 12,000 ＝ 18,000円。（判断式⑤）"}, {"id": 30, "category": "事例問題", "question": "ケースCが入院日額給付型の医療保険を解約・減額してよいかを判断する基準として、正しい組み合わせはどれか。", "options": ["保険会社の評判と保険料の安さ", "対象外の費用と月またぎ入院の初期負担を現預金で払えるか／長く療養して収入が減っても生活を維持できるか", "加入してからの年数と、解約返戻金の額", "友人が入っているかどうか"], "answer": 1, "answerLetter": "B", "explanation": "両方「はい」なら、解約・減額の候補になります。（判断式③）"}];
+    let userAnswers = new Array(30).fill(null);
+    let currentQIndex = 0;
+    let examineeName = "受講生";
 
-    let currentIndex = 0;
-    let userAnswers = new Array(questions.length).fill(null);
-    let examineeName = "";
+    // 90-Day Plan Items
+    const defaultPlanItems = [
+      { id: "plan-phone", cat: "通信費", name: "格安プランへの最適化（LINEMO等）", cur: 6000, next: 2090, done: false },
+      { id: "plan-fire", cat: "火災保険", name: "ネット型火災保険への自主切替", cur: 1000, next: 300, done: false },
+      { id: "plan-shower", cat: "光熱費", name: "節水シャワーヘッド導入（水道・ガス削減）", cur: 2300, next: 0, done: false },
+      { id: "plan-olive", cat: "決済還元", name: "Olive固定・ウエル活WAON POINT一本化", cur: 0, next: 3000, isAdd: true, done: false },
+      { id: "plan-food", cat: "食費", name: "週1まとめ買い×下味冷凍プロトコル", cur: 45000, next: 30000, done: false },
+      { id: "plan-elec", cat: "光熱費", name: "新電力・新ガス会社シミュレーション切替", cur: 15000, next: 13500, done: false },
+      { id: "plan-med", cat: "医療保険", name: "民間入院日額保険のスリム化", cur: 5000, next: 1000, done: false }
+    ];
 
+    let planItems = JSON.parse(localStorage.getItem("setsuyaku_plan") || "null") || defaultPlanItems;
+
+    // Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
+      document.querySelectorAll(".nav-tab").forEach(el => el.classList.remove("active"));
+      
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add("active");
+
+      if (tabId === "tab-home") document.getElementById("btn-tab-home").classList.add("active");
+      if (tabId === "tab-calc") document.getElementById("btn-tab-calc").classList.add("active");
+      if (tabId === "tab-plan") {
+        document.getElementById("btn-tab-plan").classList.add("active");
+        renderPlanTable();
+      }
+      if (tabId === "tab-exam") document.getElementById("btn-tab-exam").classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // ==========================================
+    // 2. Calculators Logic
+    // ==========================================
+    function runEngelCalc() {
+      const food = parseFloat(document.getElementById("calc-food").value) || 0;
+      const total = parseFloat(document.getElementById("calc-total").value) || 1;
+      const engel = Math.round((food / total) * 1000) / 10;
+      
+      document.getElementById("res-engel-val").textContent = isFinite(engel) ? engel.toFixed(1) : "0.0";
+      const badge = document.getElementById("res-engel-badge");
+      const advice = document.getElementById("res-engel-advice");
+
+      if (engel <= 25) {
+        badge.className = "calc-badge badge-good";
+        badge.textContent = "良好（家計に余裕あり）";
+        advice.innerHTML = "食費が理想的な水準に抑えられています。浮いた資金を新NISA等の資産形成へ回しましょう。";
+      } else if (engel <= 29) {
+        badge.className = "calc-badge badge-warn";
+        badge.textContent = "全国平均並み（2025年平均 28.6%）";
+        advice.innerHTML = "平均的な水準です。通信費や保険などの固定費を削ることで、無理なく25%以下を目指せます。";
+      } else {
+        badge.className = "calc-badge badge-alert";
+        badge.textContent = "警告水準（30%以上）";
+        advice.innerHTML = "家計が硬直化しています。第5回の「PBの使い分け」「週1まとめ買い×下味冷凍」を最優先で導入してください。";
+      }
+    }
+
+    function runBreakevenCalc() {
+      const initCost = parseFloat(document.getElementById("calc-init-cost").value) || 0;
+      const monthlySave = parseFloat(document.getElementById("calc-monthly-save").value) || 1;
+      const months = Math.round((initCost / monthlySave) * 10) / 10;
+      
+      document.getElementById("res-breakeven-val").textContent = isFinite(months) ? months.toFixed(1) : "0.0";
+      const badge = document.getElementById("res-breakeven-badge");
+      const advice = document.getElementById("res-breakeven-advice");
+
+      if (months <= 36) {
+        badge.className = "calc-badge badge-good";
+        badge.textContent = "超優良（3年以内に回収）";
+        advice.textContent = "早期に元が取れます。迷わず乗り換えを実行すべき案件です。";
+      } else if (months <= 60) {
+        badge.className = "calc-badge badge-warn";
+        badge.textContent = "乗り換え推奨（5年以内に回収）";
+        advice.textContent = `その住まいや契約をあと ${months.toFixed(0)} カ月以上継続するなら、乗り換えが確実にお得です。`;
+      } else {
+        badge.className = "calc-badge badge-alert";
+        badge.textContent = "慎重に検討（5年超）";
+        advice.textContent = "回収までに期間を要します。他のプランや見直し施策を優先してください。";
+      }
+    }
+
+    function runMedicalInsuranceCalc() {
+      const cash = parseFloat(document.getElementById("calc-cash").value) || 0;
+      const cap = parseFloat(document.getElementById("calc-income-tier").value) || 530000;
+      const neededSafeFund = cap + 200000; // Cap + differential bed / extras
+
+      const val = document.getElementById("res-med-val");
+      const badge = document.getElementById("res-med-badge");
+      const advice = document.getElementById("res-med-advice");
+
+      if (cash >= neededSafeFund) {
+        val.textContent = "解約・大幅減額 候補";
+        val.style.color = "var(--accent-dark)";
+        badge.className = "calc-badge badge-good";
+        badge.textContent = `手元資金が年間自己負担上限（約${(cap/10000).toFixed(0)}万円）を上回る`;
+        advice.textContent = "公的高額療養費制度があるため、高額な医療費でも手元資金で賄えます。割高な入院日額保険を解約・減額し、月数千円〜1万円以上の固定費を浮かせましょう。";
+      } else {
+        val.textContent = "現状維持（段階的解約）";
+        val.style.color = "var(--gold-dark)";
+        badge.className = "calc-badge badge-warn";
+        badge.textContent = "手元の生活防衛資金が不足気味";
+        advice.textContent = `手元預金が約${(neededSafeFund/10000).toFixed(0)}万円に達するまでは最低限の保障を維持し、貯蓄が貯まり次第解約を検討しましょう。`;
+      }
+    }
+
+    function setEquipPreset() {
+      const val = document.getElementById("calc-equip-preset").value;
+      if (val !== "custom") {
+        const [c, s] = val.split(",");
+        document.getElementById("calc-equip-cost").value = c;
+        document.getElementById("calc-equip-annual").value = s;
+      }
+      runEquipCalc();
+    }
+
+    function runEquipCalc() {
+      const cost = parseFloat(document.getElementById("calc-equip-cost").value) || 0;
+      const annual = parseFloat(document.getElementById("calc-equip-annual").value) || 1;
+      const monthly = annual / 12;
+      const months = Math.round((cost / monthly) * 10) / 10;
+      const profit10Years = Math.round(annual * 10 - cost);
+
+      document.getElementById("res-equip-val").textContent = isFinite(months) ? months.toFixed(1) : "0.0";
+      const profitBadge = document.getElementById("res-equip-profit");
+      profitBadge.textContent = `10年間の純利益：+${profit10Years.toLocaleString()} 円`;
+
+      const advice = document.getElementById("res-equip-advice");
+      if (months <= 6) {
+        advice.textContent = "半年以内で元が取れる最優先の投資施策です。今すぐ交換をおすすめします。";
+      } else if (months <= 36) {
+        advice.textContent = "3年以内で回収可能です。設備更新のタイミングで積極的に採用しましょう。";
+      } else {
+        advice.textContent = "長期的な省エネ設備です。補助金（窓リノベ・東京ゼロエミ等）を活用して初期費用を圧縮してください。";
+      }
+    }
+
+    function runTaxDeductCalc() {
+      const hosp = parseFloat(document.getElementById("calc-med-hospital").value) || 0;
+      const otc = parseFloat(document.getElementById("calc-med-otc").value) || 0;
+      const total = hosp + otc;
+
+      const traditionalDeduct = Math.max(0, total - 100000);
+      const selfMediDeduct = Math.min(88000, Math.max(0, otc - 12000));
+
+      const winner = document.getElementById("res-tax-winner");
+      const badge = document.getElementById("res-tax-badge");
+      const advice = document.getElementById("res-tax-advice");
+
+      if (selfMediDeduct > traditionalDeduct) {
+        winner.textContent = "セルフメディケーション税制が有利";
+        winner.style.color = "var(--primary)";
+        badge.className = "calc-badge badge-good";
+        badge.textContent = `控除額：${selfMediDeduct.toLocaleString()} 円（医療費控除：${traditionalDeduct.toLocaleString()} 円）`;
+        advice.textContent = `合計支出${total.toLocaleString()}円ですが、市販薬控除（${selfMediDeduct.toLocaleString()}円）が従来の医療費控除を${(selfMediDeduct - traditionalDeduct).toLocaleString()}円上回ります。`;
+      } else if (traditionalDeduct > selfMediDeduct) {
+        winner.textContent = "従来の医療費控除が有利";
+        winner.style.color = "var(--accent-dark)";
+        badge.className = "calc-badge badge-good";
+        badge.textContent = `控除額：${traditionalDeduct.toLocaleString()} 円（セルフメディ：${selfMediDeduct.toLocaleString()} 円）`;
+        advice.textContent = `医療費控除（${traditionalDeduct.toLocaleString()}円）がセルフメディ控除を上回っています。病院の領収書と市販薬レシートを合算して申告してください。`;
+      } else {
+        winner.textContent = traditionalDeduct > 0 ? "どちらも同額" : "控除対象なし";
+        badge.className = "calc-badge badge-warn";
+        badge.textContent = `控除額：${traditionalDeduct.toLocaleString()} 円`;
+        advice.textContent = "基準額（病院＋薬で10万円、または対象市販薬で1.2万円）に達しているかご確認ください。";
+      }
+    }
+
+    function runUnitPriceCalc() {
+      const pa = parseFloat(document.getElementById("calc-price-a").value) || 0;
+      const va = parseFloat(document.getElementById("calc-volume-a").value) || 1;
+      const pb = parseFloat(document.getElementById("calc-price-b").value) || 0;
+      const vb = parseFloat(document.getElementById("calc-volume-b").value) || 1;
+
+      const ua = pa / va;
+      const ub = pb / vb;
+
+      const winner = document.getElementById("res-unit-winner");
+      const detail = document.getElementById("res-unit-detail");
+
+      if (ua < ub) {
+        const diff = Math.round(((ub - ua) / ub) * 1000) / 10;
+        winner.textContent = `商品Aの方が ${diff}% 安い！`;
+        winner.style.color = "var(--accent-dark)";
+      } else if (ub < ua) {
+        const diff = Math.round(((ua - ub) / ua) * 1000) / 10;
+        winner.textContent = `商品Bの方が ${diff}% 安い！`;
+        winner.style.color = "var(--primary)";
+      } else {
+        winner.textContent = "どちらも1gあたり同額です";
+        winner.style.color = "var(--text-muted)";
+      }
+
+      detail.innerHTML = `商品A：${ua.toFixed(3)} 円/g ｜ 商品B：${ub.toFixed(3)} 円/g<br>見た目の大容量やPBマークに惑わされず、1g単価で底値を判断しましょう。`;
+    }
+
+    // ==========================================
+    // 3. 90-Day Planner Logic
+    // ==========================================
+    function renderPlanTable() {
+      const tbody = document.getElementById("plan-tbody");
+      tbody.innerHTML = "";
+      let totalAnnual = 0;
+
+      planItems.forEach((item, idx) => {
+        const monthlySave = item.isAdd ? item.next : Math.max(0, item.cur - item.next);
+        const annualSave = monthlySave * 12;
+        totalAnnual += annualSave;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><input type="checkbox" ${item.done ? "checked" : ""} onchange="togglePlanItem(${idx})"></td>
+          <td>
+            <strong>${item.name}</strong>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">${item.cat}</div>
+          </td>
+          <td>${item.isAdd ? "-" : `<input type="number" class="plan-input" value="${item.cur}" onchange="updatePlanCur(${idx}, this.value)"> 円`}</td>
+          <td><input type="number" class="plan-input" value="${item.next}" onchange="updatePlanNext(${idx}, this.value)"> 円</td>
+          <td style="font-weight: 700; color: var(--primary);">+${monthlySave.toLocaleString()} 円</td>
+          <td style="font-weight: 800; color: var(--accent-dark);">+${annualSave.toLocaleString()} 円</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById("display-annual-total").textContent = totalAnnual.toLocaleString();
+    }
+
+    function updatePlanCur(idx, val) {
+      planItems[idx].cur = parseFloat(val) || 0;
+      renderPlanTable();
+    }
+
+    function updatePlanNext(idx, val) {
+      planItems[idx].next = parseFloat(val) || 0;
+      renderPlanTable();
+    }
+
+    function togglePlanItem(idx) {
+      planItems[idx].done = !planItems[idx].done;
+      savePlan();
+    }
+
+    function savePlan() {
+      localStorage.setItem("setsuyaku_plan", JSON.stringify(planItems));
+      alert("計画表が保存されました！");
+    }
+
+    // ==========================================
+    // 4. Certification Exam Logic
+    // ==========================================
     function startExam() {
       const nameInput = document.getElementById("examinee-name").value.trim();
       if (!nameInput) {
         alert("修了証書に記載するお名前を入力してください。");
-        document.getElementById("examinee-name").focus();
         return;
       }
       examineeName = nameInput;
-      document.getElementById("view-welcome").style.display = "none";
-      document.getElementById("view-exam").style.display = "block";
+      document.getElementById("view-exam-welcome").style.display = "none";
+      document.getElementById("view-exam-quiz").style.display = "block";
+      document.getElementById("view-exam-result").style.display = "none";
       
+      currentQIndex = 0;
+      userAnswers = new Array(30).fill(null);
+      renderQuestion();
       renderPalette();
-      renderCurrentQuestion();
     }
 
-    function renderCurrentQuestion() {
-      const q = questions[currentIndex];
+    function renderQuestion() {
+      const q = questions[currentQIndex];
+      document.getElementById("exam-q-num").textContent = currentQIndex + 1;
+      document.getElementById("exam-q-category").textContent = q.category;
+      document.getElementById("exam-q-text").textContent = q.question;
       
-      // Category & numbering
-      const catBadge = document.getElementById("q-category-badge");
-      catBadge.textContent = q.category;
-      catBadge.className = "q-category " + (
-        q.category === "知識問題" ? "cat-knowledge" : 
-        (q.category === "計算問題" ? "cat-calc" : "cat-case")
-      );
+      const progressPercent = Math.round(((currentQIndex + 1) / 30) * 100);
+      document.getElementById("exam-progress-fill").style.width = progressPercent + "%";
 
-      document.getElementById("q-counter").textContent = `問 ${q.id} / 30`;
-      document.getElementById("q-text").textContent = q.question;
-
-      // Progress bar
-      const pct = Math.round(((currentIndex + 1) / questions.length) * 100);
-      document.getElementById("progress-bar").style.width = pct + "%";
-      document.getElementById("progress-percent").textContent = `進捗: ${pct}%`;
-
-      // Options
-      const letters = ["A", "B", "C", "D"];
-      const container = document.getElementById("options-container");
+      const container = document.getElementById("exam-options-container");
       container.innerHTML = "";
 
-      q.options.forEach((optText, idx) => {
-        const item = document.createElement("div");
-        item.className = "option-item" + (userAnswers[currentIndex] === idx ? " selected" : "");
-        item.onclick = () => selectOption(idx);
+      const letters = ["A", "B", "C", "D"];
+      q.options.forEach((opt, idx) => {
+        const div = document.createElement("div");
+        div.className = "option-item" + (userAnswers[currentQIndex] === idx ? " selected" : "");
+        div.onclick = () => selectOption(idx);
 
-        item.innerHTML = `
-          <div class="option-letter">${letters[idx]}.</div>
-          <div class="option-text">${optText}</div>
+        div.innerHTML = `
+          <div class="option-indicator">${letters[idx]}</div>
+          <div>${opt}</div>
         `;
-        container.appendChild(item);
+        container.appendChild(div);
       });
 
-      // Navigation buttons
-      document.getElementById("btn-prev").disabled = (currentIndex === 0);
-      document.getElementById("btn-next").textContent = (currentIndex === questions.length - 1) ? "確認" : "次の設問 →";
-
-      updatePalette();
+      document.getElementById("btn-prev-q").disabled = (currentQIndex === 0);
+      document.getElementById("btn-next-q").disabled = (currentQIndex === 29);
+      updatePaletteStatus();
     }
 
-    function selectOption(idx) {
-      userAnswers[currentIndex] = idx;
-      renderCurrentQuestion();
+    function selectOption(optIndex) {
+      userAnswers[currentQIndex] = optIndex;
+      renderQuestion();
+      updatePaletteStatus();
     }
 
-    function navigateQuestion(offset) {
-      const newIndex = currentIndex + offset;
-      if (newIndex >= 0 && newIndex < questions.length) {
-        currentIndex = newIndex;
-        renderCurrentQuestion();
+    function navQuestion(dir) {
+      const target = currentQIndex + dir;
+      if (target >= 0 && target < 30) {
+        currentQIndex = target;
+        renderQuestion();
       }
-    }
-
-    function jumpToQuestion(idx) {
-      currentIndex = idx;
-      renderCurrentQuestion();
     }
 
     function togglePalette() {
-      const wrapper = document.getElementById("palette-wrapper");
-      wrapper.style.display = wrapper.style.display === "none" ? "block" : "none";
+      const el = document.getElementById("palette-wrapper");
+      el.style.display = (el.style.display === "none") ? "block" : "none";
     }
 
     function renderPalette() {
-      const palette = document.getElementById("question-palette");
-      palette.innerHTML = "";
-      for (let i = 0; i < questions.length; i++) {
+      const grid = document.getElementById("palette-grid");
+      grid.innerHTML = "";
+      for (let i = 0; i < 30; i++) {
         const btn = document.createElement("button");
         btn.className = "palette-btn";
-        btn.textContent = i + 1;
-        btn.onclick = () => jumpToQuestion(i);
-        palette.appendChild(btn);
+        btn.id = "pal-btn-" + i;
+        btn.textContent = (i + 1);
+        btn.onclick = () => {
+          currentQIndex = i;
+          renderQuestion();
+        };
+        grid.appendChild(btn);
       }
+      updatePaletteStatus();
     }
 
-    function updatePalette() {
-      const btns = document.querySelectorAll(".palette-btn");
-      btns.forEach((btn, idx) => {
+    function updatePaletteStatus() {
+      for (let i = 0; i < 30; i++) {
+        const btn = document.getElementById("pal-btn-" + i);
+        if (!btn) continue;
         btn.className = "palette-btn";
-        if (userAnswers[idx] !== null) btn.classList.add("answered");
-        if (idx === currentIndex) btn.classList.add("active");
-      });
+        if (userAnswers[i] !== null) btn.classList.add("answered");
+        if (i === currentQIndex) btn.classList.add("current");
+      }
     }
 
     function submitExam() {
       const unanswered = userAnswers.filter(a => a === null).length;
       if (unanswered > 0) {
-        const confirmSubmit = confirm(`まだ未回答の設問が ${unanswered} 問あります。このまま採点しますか？`);
-        if (!confirmSubmit) return;
+        if (!confirm(`未回答の設問が ${unanswered} 問あります。このまま採点しますか？`)) {
+          return;
+        }
       }
 
-      // Grade
-      let totalScore = 0;
-      let scoreK = 0, scoreCalc = 0, scoreCase = 0;
+      let score = 0;
+      let catScores = [0, 0, 0]; // 知識, 計算, 事例
 
       questions.forEach((q, idx) => {
         const isCorrect = (userAnswers[idx] === q.answer);
         if (isCorrect) {
-          totalScore++;
-          if (q.category === "知識問題") scoreK++;
-          else if (q.category === "計算問題") scoreCalc++;
-          else if (q.category === "事例問題") scoreCase++;
+          score++;
+          if (idx < 10) catScores[0]++;
+          else if (idx < 20) catScores[1]++;
+          else catScores[2]++;
         }
       });
 
-      const passed = (totalScore >= 24);
-
-      // Display results
-      document.getElementById("view-exam").style.display = "none";
-      document.getElementById("view-result").style.display = "block";
-
-      const banner = document.getElementById("result-banner");
-      banner.className = "result-banner " + (passed ? "result-pass" : "result-fail");
-
-      document.getElementById("result-status-title").textContent = passed ? "🎉 合格おめでとうございます！" : "不合格（あと少しでした）";
-      document.getElementById("result-score").textContent = `${totalScore} / 30 点`;
-      document.getElementById("result-message").textContent = passed ? 
-        `合格基準（24点以上）を達成しました！節約マイスター（2026年度版）として認定されました。` : 
-        `合格ラインは24点（得点率80%）以上です。解説を確認し、何度でも再挑戦できます。`;
-
-      document.getElementById("score-knowledge").textContent = `${scoreK} / 10`;
-      document.getElementById("score-calc").textContent = `${scoreCalc} / 10`;
-      document.getElementById("score-case").textContent = `${scoreCase} / 10`;
-
-      // Certificate handling
-      const certBox = document.getElementById("certificate-box");
-      if (passed) {
-        certBox.style.display = "block";
-        document.getElementById("cert-display-name").textContent = examineeName + " 殿";
-        
-        const now = new Date();
-        const dateStr = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
-        document.getElementById("cert-display-date").textContent = dateStr;
-
-        // Generate unique certificate ID
-        const randomNum = Math.floor(1000 + Math.random() * 9000);
-        document.getElementById("cert-display-id").textContent = `STM-2026-${randomNum}`;
-      } else {
-        certBox.style.display = "none";
-      }
-
-      // Render review list
-      renderReviewList();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const passed = (score >= 24); // 80% passing threshold
+      showExamResult(score, catScores, passed);
     }
 
-    function renderReviewList() {
-      const container = document.getElementById("review-list");
+    function showExamResult(score, catScores, passed) {
+      document.getElementById("view-exam-quiz").style.display = "none";
+      document.getElementById("view-exam-result").style.display = "block";
+
+      document.getElementById("result-score-val").textContent = score;
+      document.getElementById("score-cat-1").textContent = `${catScores[0]} / 10`;
+      document.getElementById("score-cat-2").textContent = `${catScores[1]} / 10`;
+      document.getElementById("score-cat-3").textContent = `${catScores[2]} / 10`;
+
+      const title = document.getElementById("result-status-title");
+      const badge = document.getElementById("result-status-badge");
+      const msg = document.getElementById("result-message");
+      const certBox = document.getElementById("certificate-wrapper");
+      const failActions = document.getElementById("result-actions-fail");
+
+      if (passed) {
+        title.textContent = "合格！節約マイスターに認定されました";
+        title.style.color = "var(--accent-dark)";
+        badge.className = "hero-badge badge-good";
+        badge.textContent = "🎉 合格（得点率 80%以上達成）";
+        msg.textContent = "おめでとうございます！理論と実践力を兼ね備えた「節約マイスター」として認定されました。下の修了証書を保存してください。";
+        certBox.style.display = "block";
+        failActions.style.display = "none";
+
+        // Generate Certificate Details
+        document.getElementById("cert-display-name").textContent = examineeName + " 殿";
+        const randomId = Math.floor(1000 + Math.random() * 9000);
+        document.getElementById("cert-display-id").textContent = "STM-2026-" + randomId;
+        const now = new Date();
+        document.getElementById("cert-display-date").textContent = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
+      } else {
+        title.textContent = "不合格（合格ライン：24点以上）";
+        title.style.color = "var(--danger)";
+        badge.className = "hero-badge badge-alert";
+        badge.textContent = "再挑戦をお待ちしています";
+        msg.textContent = "合格基準の80%（24問）まであと少しでした！下の設問レビューで解説を確認し、もう一度チャレンジしてみましょう。";
+        certBox.style.display = "none";
+        failActions.style.display = "block";
+      }
+
+      renderExamReview();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderExamReview() {
+      const container = document.getElementById("exam-review-container");
       container.innerHTML = "";
-      const letters = ["A", "B", "C", "D"];
 
       questions.forEach((q, idx) => {
-        const uAns = userAnswers[idx];
-        const isCorrect = (uAns === q.answer);
+        const isCorrect = (userAnswers[idx] === q.answer);
+        const div = document.createElement("div");
+        div.style.background = isCorrect ? "#f0fdf4" : "#fef2f2";
+        div.style.border = "1px solid " + (isCorrect ? "#bbf7d0" : "#fecaca");
+        div.style.borderRadius = "8px";
+        div.style.padding = "1rem 1.25rem";
 
-        const card = document.createElement("div");
-        card.className = "review-item " + (isCorrect ? "review-correct" : "review-wrong");
+        const letters = ["A", "B", "C", "D"];
+        const userChoice = userAnswers[idx] !== null ? letters[userAnswers[idx]] : "未回答";
 
-        const userAnsText = uAns !== null ? `${letters[uAns]}. ${q.options[uAns]}` : "未回答";
-        const correctAnsText = `${q.answerLetter}. ${q.options[q.answer]}`;
-
-        card.innerHTML = `
-          <div class="review-header">
-            <div>問 ${q.id} [${q.category}] ${isCorrect ? "✅ 正解" : "❌ 不正解"}</div>
-            <div style="font-size: 0.9rem; font-weight: normal; color: var(--text-muted);">
-              配点: 1点
-            </div>
+        div.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+            <strong>問${idx + 1}. [${q.category}]</strong>
+            <span style="font-weight: 800; color: ${isCorrect ? "var(--accent-dark)" : "var(--danger)"};">
+              ${isCorrect ? "○ 正解" : "× 不正解"}
+            </span>
           </div>
-          <div class="review-body">
-            <div style="font-weight: 700; margin-bottom: 0.5rem;">${q.question}</div>
-            <div style="margin: 0.4rem 0;">あなたの回答: <strong>${userAnsText}</strong></div>
-            <div style="margin: 0.4rem 0; color: var(--success); font-weight: 700;">正解: ${correctAnsText}</div>
-            <div class="review-explanation">
-              <strong>【解説】</strong><br>
-              ${q.explanation}
-            </div>
+          <div style="font-weight: 600; margin-bottom: 0.5rem; color: #1e293b;">${q.question}</div>
+          <div style="font-size: 0.88rem; color: #475569;">
+            あなたの回答：${userChoice} ｜ 正解：<strong>${letters[q.answer]}（${q.options[q.answer]}）</strong>
+          </div>
+          <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.4rem; background: rgba(255,255,255,0.7); padding: 0.5rem; border-radius: 4px;">
+            💡 解説：${q.explanation}
           </div>
         `;
-        container.appendChild(card);
+        container.appendChild(div);
       });
     }
 
-    function shareTwitter() {
-      const text = encodeURIComponent(`「節約マイスター（2026年度版）」の修了試験に合格しました！6つの判断式で固定費・光熱費・税制・食費を構造的に見直します。\n#節約マイスター #家計防衛 #我慢から構造へ`);
-      const url = `https://twitter.com/intent/tweet?text=${text}`;
-      window.open(url, "_blank");
+    function restartExam() {
+      document.getElementById("view-exam-welcome").style.display = "block";
+      document.getElementById("view-exam-quiz").style.display = "none";
+      document.getElementById("view-exam-result").style.display = "none";
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function restartExam() {
-      userAnswers.fill(null);
-      currentIndex = 0;
-      document.getElementById("view-result").style.display = "none";
-      document.getElementById("view-welcome").style.display = "block";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function shareX() {
+      const text = encodeURIComponent("物価高・利上げに対抗する「節約マイスター」の公式修了認定試験に合格しました！🎉 6つの判断式で家計の仕組み化を始めます。 #節約マイスター #家計防衛 #資格");
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
     }
+
+    // Initial Execution
+    window.addEventListener("DOMContentLoaded", () => {
+      runEngelCalc();
+      runBreakevenCalc();
+      runMedicalInsuranceCalc();
+      runEquipCalc();
+      runTaxDeductCalc();
+      runUnitPriceCalc();
+    });
   </script>
 </body>
 </html>
